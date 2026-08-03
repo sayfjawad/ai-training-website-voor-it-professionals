@@ -1,0 +1,6 @@
+{
+  "name": "AI voor IT-professionals",
+  "description": "Professionele en responsieve landingspagina voor de 1-daagse training 'AI voor IT-professionals' georganiseerd door Stichting Duurzaam AI. Beschikbaar in het Nederlands en Engels.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
