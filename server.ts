@@ -178,64 +178,116 @@ ${reg.remarks || "Geen"}
 
       const traineeHtml = isDutch ? `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px; background-color: #f8fafc; color: #1e293b;">
-          <h2 style="color: #059669; border-bottom: 2px solid #34d399; padding-bottom: 10px; margin-top: 0;">Bedankt voor je inschrijving, ${reg.firstName}!</h2>
+          <h2 style="color: #059669; border-bottom: 2px solid #34d399; padding-bottom: 10px; margin-top: 0;">Beste ${reg.firstName},</h2>
           <p style="font-size: 14px; line-height: 1.5; color: #475569;">
-            Je plaats voor de training <strong>"AI voor IT-professionals"</strong> is gereserveerd. Hieronder de belangrijkste gegevens:
+            Hartelijk dank voor je reservering voor onze training <strong>AI voor IT-professionals</strong>.
           </p>
-          <table style="width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 14px;">
+          <p style="font-size: 14px; line-height: 1.5; color: #475569;">
+            Wij hebben je reservering in goede orde ontvangen.
+          </p>
+
+          <h3 style="color: #059669; font-size: 15px; margin: 24px 0 8px;">Trainingsgegevens</h3>
+          <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
             <tr style="background-color: #f1f5f9;">
               <td style="padding: 8px; font-weight: bold; width: 140px; border-bottom: 1px solid #e2e8f0;">Referentie:</td>
               <td style="padding: 8px; border-bottom: 1px solid #e2e8f0; font-family: monospace;">${reg.id}</td>
             </tr>
             <tr>
+              <td style="padding: 8px; font-weight: bold; border-bottom: 1px solid #e2e8f0;">Training:</td>
+              <td style="padding: 8px; border-bottom: 1px solid #e2e8f0;">AI voor IT-professionals</td>
+            </tr>
+            <tr style="background-color: #f1f5f9;">
               <td style="padding: 8px; font-weight: bold; border-bottom: 1px solid #e2e8f0;">Datum:</td>
               <td style="padding: 8px; border-bottom: 1px solid #e2e8f0;">Zaterdag 26 september 2026</td>
             </tr>
-            <tr style="background-color: #f1f5f9;">
-              <td style="padding: 8px; font-weight: bold; border-bottom: 1px solid #e2e8f0;">Tijd:</td>
-              <td style="padding: 8px; border-bottom: 1px solid #e2e8f0;">09:00 - 17:00 uur (inloop vanaf 08:45 uur)</td>
-            </tr>
             <tr>
+              <td style="padding: 8px; font-weight: bold; border-bottom: 1px solid #e2e8f0;">Tijd:</td>
+              <td style="padding: 8px; border-bottom: 1px solid #e2e8f0;">09:00 – 17:00 uur</td>
+            </tr>
+            <tr style="background-color: #f1f5f9;">
               <td style="padding: 8px; font-weight: bold; border-bottom: 1px solid #e2e8f0;">Locatie:</td>
               <td style="padding: 8px; border-bottom: 1px solid #e2e8f0;">Noordenweg 24, Ridderkerk</td>
             </tr>
           </table>
-          <p style="font-size: 13px; line-height: 1.5; color: #475569; margin-top: 20px;">
-            Je ontvangt op een later moment nog exacte zaal- en route-informatie. Heb je vragen? Neem gerust contact op via
+
+          <h3 style="color: #059669; font-size: 15px; margin: 24px 0 8px;">Wat gebeurt er nu?</h3>
+          <div style="padding: 12px; border-left: 4px solid #10b981; background-color: #f0fdf4; font-size: 13px; line-height: 1.6; color: #1e293b;">
+            <p style="margin: 0 0 10px;">Binnen 2 werkdagen ontvang je van ons een factuur voor de deelname aan de training.</p>
+            <p style="margin: 0;">Je reservering wordt definitief zodra wij de betaling hebben ontvangen. Na ontvangst van de betaling sturen wij je een definitieve bevestiging van je inschrijving.</p>
+          </div>
+
+          <h3 style="color: #059669; font-size: 15px; margin: 24px 0 8px;">Vragen?</h3>
+          <p style="font-size: 13px; line-height: 1.5; color: #475569;">
+            Heb je in de tussentijd vragen? Neem gerust contact met ons op via
             <a href="mailto:info@stichtingduurzaamai.nl">info@stichtingduurzaamai.nl</a>.
           </p>
+
+          <p style="font-size: 14px; line-height: 1.5; color: #475569; margin-top: 20px;">
+            Wij kijken ernaar uit je te verwelkomen tijdens de training.
+          </p>
+          <p style="font-size: 14px; line-height: 1.5; color: #475569;">
+            Met vriendelijke groet,<br/>
+            Stichting Duurzaam AI
+          </p>
+
           <div style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #e2e8f0; font-size: 11px; color: #94a3b8; text-align: center;">
             Stichting Duurzaam AI &bull; ${new Date(reg.createdAt).toLocaleString("nl-NL")}
           </div>
         </div>
       ` : `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px; background-color: #f8fafc; color: #1e293b;">
-          <h2 style="color: #059669; border-bottom: 2px solid #34d399; padding-bottom: 10px; margin-top: 0;">Thank you for registering, ${reg.firstName}!</h2>
+          <h2 style="color: #059669; border-bottom: 2px solid #34d399; padding-bottom: 10px; margin-top: 0;">Dear ${reg.firstName},</h2>
           <p style="font-size: 14px; line-height: 1.5; color: #475569;">
-            Your seat for the <strong>"AI for IT Professionals"</strong> training has been reserved. Here are the key details:
+            Thank you for your reservation for our <strong>AI for IT Professionals</strong> training.
           </p>
-          <table style="width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 14px;">
+          <p style="font-size: 14px; line-height: 1.5; color: #475569;">
+            We have successfully received your reservation.
+          </p>
+
+          <h3 style="color: #059669; font-size: 15px; margin: 24px 0 8px;">Training details</h3>
+          <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
             <tr style="background-color: #f1f5f9;">
               <td style="padding: 8px; font-weight: bold; width: 140px; border-bottom: 1px solid #e2e8f0;">Reference:</td>
               <td style="padding: 8px; border-bottom: 1px solid #e2e8f0; font-family: monospace;">${reg.id}</td>
             </tr>
             <tr>
+              <td style="padding: 8px; font-weight: bold; border-bottom: 1px solid #e2e8f0;">Training:</td>
+              <td style="padding: 8px; border-bottom: 1px solid #e2e8f0;">AI for IT Professionals</td>
+            </tr>
+            <tr style="background-color: #f1f5f9;">
               <td style="padding: 8px; font-weight: bold; border-bottom: 1px solid #e2e8f0;">Date:</td>
               <td style="padding: 8px; border-bottom: 1px solid #e2e8f0;">Saturday, September 26, 2026</td>
             </tr>
-            <tr style="background-color: #f1f5f9;">
-              <td style="padding: 8px; font-weight: bold; border-bottom: 1px solid #e2e8f0;">Time:</td>
-              <td style="padding: 8px; border-bottom: 1px solid #e2e8f0;">09:00 AM - 05:00 PM (doors open at 08:45 AM)</td>
-            </tr>
             <tr>
+              <td style="padding: 8px; font-weight: bold; border-bottom: 1px solid #e2e8f0;">Time:</td>
+              <td style="padding: 8px; border-bottom: 1px solid #e2e8f0;">09:00 AM – 05:00 PM</td>
+            </tr>
+            <tr style="background-color: #f1f5f9;">
               <td style="padding: 8px; font-weight: bold; border-bottom: 1px solid #e2e8f0;">Location:</td>
               <td style="padding: 8px; border-bottom: 1px solid #e2e8f0;">Noordenweg 24, Ridderkerk (NL)</td>
             </tr>
           </table>
-          <p style="font-size: 13px; line-height: 1.5; color: #475569; margin-top: 20px;">
-            Exact room and route directions will follow separately. Questions? Feel free to reach out via
+
+          <h3 style="color: #059669; font-size: 15px; margin: 24px 0 8px;">What happens next?</h3>
+          <div style="padding: 12px; border-left: 4px solid #10b981; background-color: #f0fdf4; font-size: 13px; line-height: 1.6; color: #1e293b;">
+            <p style="margin: 0 0 10px;">Within 2 business days you will receive an invoice from us for your participation in the training.</p>
+            <p style="margin: 0;">Your reservation becomes final once we have received payment. After receiving payment, we will send you a final confirmation of your registration.</p>
+          </div>
+
+          <h3 style="color: #059669; font-size: 15px; margin: 24px 0 8px;">Questions?</h3>
+          <p style="font-size: 13px; line-height: 1.5; color: #475569;">
+            If you have any questions in the meantime, feel free to contact us via
             <a href="mailto:info@stichtingduurzaamai.nl">info@stichtingduurzaamai.nl</a>.
           </p>
+
+          <p style="font-size: 14px; line-height: 1.5; color: #475569; margin-top: 20px;">
+            We look forward to welcoming you at the training.
+          </p>
+          <p style="font-size: 14px; line-height: 1.5; color: #475569;">
+            Kind regards,<br/>
+            Stichting Duurzaam AI
+          </p>
+
           <div style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #e2e8f0; font-size: 11px; color: #94a3b8; text-align: center;">
             Stichting Duurzaam AI &bull; ${new Date(reg.createdAt).toLocaleString("en-US")}
           </div>
@@ -243,31 +295,63 @@ ${reg.remarks || "Geen"}
       `;
 
       const traineeText = isDutch ? `
-Bedankt voor je inschrijving, ${reg.firstName}!
+Beste ${reg.firstName},
 
-Je plaats voor de training "AI voor IT-professionals" is gereserveerd.
+Hartelijk dank voor je reservering voor onze training AI voor IT-professionals.
 
+Wij hebben je reservering in goede orde ontvangen.
+
+Trainingsgegevens
+-----------------
 Referentie: ${reg.id}
+Training: AI voor IT-professionals
 Datum: Zaterdag 26 september 2026
-Tijd: 09:00 - 17:00 uur (inloop vanaf 08:45 uur)
+Tijd: 09:00 – 17:00 uur
 Locatie: Noordenweg 24, Ridderkerk
 
-Je ontvangt op een later moment nog exacte zaal- en route-informatie.
-Vragen? Neem contact op via info@stichtingduurzaamai.nl.
+Wat gebeurt er nu?
+------------------
+Binnen 2 werkdagen ontvang je van ons een factuur voor de deelname aan de training.
 
+Je reservering wordt definitief zodra wij de betaling hebben ontvangen. Na ontvangst van de betaling sturen wij je een definitieve bevestiging van je inschrijving.
+
+Vragen?
+-------
+Heb je in de tussentijd vragen? Neem gerust contact met ons op via info@stichtingduurzaamai.nl.
+
+Wij kijken ernaar uit je te verwelkomen tijdens de training.
+
+Met vriendelijke groet,
 Stichting Duurzaam AI
       ` : `
-Thank you for registering, ${reg.firstName}!
+Dear ${reg.firstName},
 
-Your seat for the "AI for IT Professionals" training has been reserved.
+Thank you for your reservation for our AI for IT Professionals training.
 
+We have successfully received your reservation.
+
+Training details
+----------------
 Reference: ${reg.id}
+Training: AI for IT Professionals
 Date: Saturday, September 26, 2026
-Time: 09:00 AM - 05:00 PM (doors open at 08:45 AM)
+Time: 09:00 AM – 05:00 PM
 Location: Noordenweg 24, Ridderkerk (NL)
 
-Exact room and route directions will follow separately.
-Questions? Reach out via info@stichtingduurzaamai.nl.
+What happens next?
+-------------------
+Within 2 business days you will receive an invoice from us for your participation in the training.
+
+Your reservation becomes final once we have received payment. After receiving payment, we will send you a final confirmation of your registration.
+
+Questions?
+----------
+If you have any questions in the meantime, feel free to contact us via info@stichtingduurzaamai.nl.
+
+We look forward to welcoming you at the training.
+
+Kind regards,
+Stichting Duurzaam AI
 
 Stichting Duurzaam AI
       `;
