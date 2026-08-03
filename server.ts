@@ -170,17 +170,146 @@ ${reg.remarks || "Geen"}
       `;
 
       const recipient = "info@stichtingduurzaamai.nl";
+      const isDutch = reg.language !== "en";
 
-      await transporter.sendMail({
-        from: `"${reg.firstName} ${reg.lastName} via Duurzaam AI" <${smtpUser}>`,
-        to: recipient,
-        subject: `Nieuwe aanmelding: ${reg.firstName} ${reg.lastName} (${reg.organization})`,
-        text: textContent,
-        html: htmlContent,
-        replyTo: reg.email,
-      });
+      const traineeSubject = isDutch
+        ? "Bevestiging van je inschrijving - Training AI voor IT-professionals"
+        : "Registration confirmation - AI for IT Professionals training";
 
-      console.log(`[API] Registration email successfully sent to ${recipient}`);
+      const traineeHtml = isDutch ? `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px; background-color: #f8fafc; color: #1e293b;">
+          <h2 style="color: #059669; border-bottom: 2px solid #34d399; padding-bottom: 10px; margin-top: 0;">Bedankt voor je inschrijving, ${reg.firstName}!</h2>
+          <p style="font-size: 14px; line-height: 1.5; color: #475569;">
+            Je plaats voor de training <strong>"AI voor IT-professionals"</strong> is gereserveerd. Hieronder de belangrijkste gegevens:
+          </p>
+          <table style="width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 14px;">
+            <tr style="background-color: #f1f5f9;">
+              <td style="padding: 8px; font-weight: bold; width: 140px; border-bottom: 1px solid #e2e8f0;">Referentie:</td>
+              <td style="padding: 8px; border-bottom: 1px solid #e2e8f0; font-family: monospace;">${reg.id}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; font-weight: bold; border-bottom: 1px solid #e2e8f0;">Datum:</td>
+              <td style="padding: 8px; border-bottom: 1px solid #e2e8f0;">Zaterdag 26 september 2026</td>
+            </tr>
+            <tr style="background-color: #f1f5f9;">
+              <td style="padding: 8px; font-weight: bold; border-bottom: 1px solid #e2e8f0;">Tijd:</td>
+              <td style="padding: 8px; border-bottom: 1px solid #e2e8f0;">09:00 - 17:00 uur (inloop vanaf 08:45 uur)</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; font-weight: bold; border-bottom: 1px solid #e2e8f0;">Locatie:</td>
+              <td style="padding: 8px; border-bottom: 1px solid #e2e8f0;">Noordenweg 24, Ridderkerk</td>
+            </tr>
+          </table>
+          <p style="font-size: 13px; line-height: 1.5; color: #475569; margin-top: 20px;">
+            Je ontvangt op een later moment nog exacte zaal- en route-informatie. Heb je vragen? Neem gerust contact op via
+            <a href="mailto:info@stichtingduurzaamai.nl">info@stichtingduurzaamai.nl</a>.
+          </p>
+          <div style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #e2e8f0; font-size: 11px; color: #94a3b8; text-align: center;">
+            Stichting Duurzaam AI &bull; ${new Date(reg.createdAt).toLocaleString("nl-NL")}
+          </div>
+        </div>
+      ` : `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px; background-color: #f8fafc; color: #1e293b;">
+          <h2 style="color: #059669; border-bottom: 2px solid #34d399; padding-bottom: 10px; margin-top: 0;">Thank you for registering, ${reg.firstName}!</h2>
+          <p style="font-size: 14px; line-height: 1.5; color: #475569;">
+            Your seat for the <strong>"AI for IT Professionals"</strong> training has been reserved. Here are the key details:
+          </p>
+          <table style="width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 14px;">
+            <tr style="background-color: #f1f5f9;">
+              <td style="padding: 8px; font-weight: bold; width: 140px; border-bottom: 1px solid #e2e8f0;">Reference:</td>
+              <td style="padding: 8px; border-bottom: 1px solid #e2e8f0; font-family: monospace;">${reg.id}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; font-weight: bold; border-bottom: 1px solid #e2e8f0;">Date:</td>
+              <td style="padding: 8px; border-bottom: 1px solid #e2e8f0;">Saturday, September 26, 2026</td>
+            </tr>
+            <tr style="background-color: #f1f5f9;">
+              <td style="padding: 8px; font-weight: bold; border-bottom: 1px solid #e2e8f0;">Time:</td>
+              <td style="padding: 8px; border-bottom: 1px solid #e2e8f0;">09:00 AM - 05:00 PM (doors open at 08:45 AM)</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; font-weight: bold; border-bottom: 1px solid #e2e8f0;">Location:</td>
+              <td style="padding: 8px; border-bottom: 1px solid #e2e8f0;">Noordenweg 24, Ridderkerk (NL)</td>
+            </tr>
+          </table>
+          <p style="font-size: 13px; line-height: 1.5; color: #475569; margin-top: 20px;">
+            Exact room and route directions will follow separately. Questions? Feel free to reach out via
+            <a href="mailto:info@stichtingduurzaamai.nl">info@stichtingduurzaamai.nl</a>.
+          </p>
+          <div style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #e2e8f0; font-size: 11px; color: #94a3b8; text-align: center;">
+            Stichting Duurzaam AI &bull; ${new Date(reg.createdAt).toLocaleString("en-US")}
+          </div>
+        </div>
+      `;
+
+      const traineeText = isDutch ? `
+Bedankt voor je inschrijving, ${reg.firstName}!
+
+Je plaats voor de training "AI voor IT-professionals" is gereserveerd.
+
+Referentie: ${reg.id}
+Datum: Zaterdag 26 september 2026
+Tijd: 09:00 - 17:00 uur (inloop vanaf 08:45 uur)
+Locatie: Noordenweg 24, Ridderkerk
+
+Je ontvangt op een later moment nog exacte zaal- en route-informatie.
+Vragen? Neem contact op via info@stichtingduurzaamai.nl.
+
+Stichting Duurzaam AI
+      ` : `
+Thank you for registering, ${reg.firstName}!
+
+Your seat for the "AI for IT Professionals" training has been reserved.
+
+Reference: ${reg.id}
+Date: Saturday, September 26, 2026
+Time: 09:00 AM - 05:00 PM (doors open at 08:45 AM)
+Location: Noordenweg 24, Ridderkerk (NL)
+
+Exact room and route directions will follow separately.
+Questions? Reach out via info@stichtingduurzaamai.nl.
+
+Stichting Duurzaam AI
+      `;
+
+      const [orgResult, traineeResult] = await Promise.allSettled([
+        transporter.sendMail({
+          from: `"${reg.firstName} ${reg.lastName} via Duurzaam AI" <${smtpUser}>`,
+          to: recipient,
+          subject: `Nieuwe aanmelding: ${reg.firstName} ${reg.lastName} (${reg.organization})`,
+          text: textContent,
+          html: htmlContent,
+          replyTo: reg.email,
+        }),
+        transporter.sendMail({
+          from: `"Stichting Duurzaam AI" <${smtpUser}>`,
+          to: reg.email,
+          subject: traineeSubject,
+          text: traineeText,
+          html: traineeHtml,
+          replyTo: recipient,
+        }),
+      ]);
+
+      if (orgResult.status === "rejected") {
+        console.error("[API] Error sending organization notification email:", orgResult.reason);
+      } else {
+        console.log(`[API] Registration email successfully sent to ${recipient}`);
+      }
+
+      if (traineeResult.status === "rejected") {
+        console.error("[API] Error sending trainee confirmation email:", traineeResult.reason);
+      } else {
+        console.log(`[API] Confirmation email successfully sent to ${reg.email}`);
+      }
+
+      if (orgResult.status === "rejected" && traineeResult.status === "rejected") {
+        return res.status(500).json({
+          success: false,
+          error: "Kon inschrijving niet verzenden per e-mail.",
+        });
+      }
+
       return res.status(200).json({ success: true, message: "Email sent successfully!", id: reg.id });
 
     } catch (error: any) {

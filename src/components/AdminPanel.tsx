@@ -41,6 +41,7 @@ export const AdminPanel: React.FC = () => {
           remarks: "Ik wil graag extra focussen op de security-aspecten van Copilot.",
           agreeTerms: true,
           agreePrivacy: true,
+          language: "nl",
         },
         {
           id: "REG-124058",
@@ -56,6 +57,7 @@ export const AdminPanel: React.FC = () => {
           remarks: "Heel benieuwd naar de prompting technieken voor code review!",
           agreeTerms: true,
           agreePrivacy: true,
+          language: "nl",
         },
       ];
       localStorage.setItem("duurzaam_ai_registrations", JSON.stringify(initialSeed));

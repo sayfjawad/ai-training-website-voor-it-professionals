@@ -175,6 +175,7 @@ export interface RegistrationData {
   remarks?: string;
   agreeTerms: boolean;
   agreePrivacy: boolean;
+  language: "nl" | "en";
 }
 
 export interface FaqItem {

@@ -73,6 +73,7 @@ export const RegistrationForm: React.FC = () => {
         remarks,
         agreeTerms,
         agreePrivacy,
+        language,
       };
 
       // Send the registration to the backend server to dispatch an email notification
