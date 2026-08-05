@@ -1,11 +1,93 @@
 import express from "express";
 import path from "path";
+import fs from "fs";
+import { execFileSync } from "child_process";
 import dotenv from "dotenv";
 import nodemailer from "nodemailer";
 import { createServer as createViteServer } from "vite";
 
 // Load environment variables
 dotenv.config();
+
+const TRAINING_CAPACITY = 10;
+const DATA_DIR = path.join(process.cwd(), "data");
+const REGISTRATIONS_FILE = path.join(DATA_DIR, "registrations.json");
+const GOATCOUNTER_DB = process.env.GOATCOUNTER_DB || "/home/sayf/goatcounter/db/goatcounter.sqlite3";
+const GOATCOUNTER_SITE_HOOFDWEBSITE = 1;
+const GOATCOUNTER_SITE_TRAINING = 2;
+const STATS_ALLOWED_ORIGINS = new Set([
+  "https://stichtingduurzaamai.nl",
+  "https://www.stichtingduurzaamai.nl",
+  "https://training.stichtingduurzaamai.nl",
+]);
+
+interface StoredRegistration {
+  id: string;
+  createdAt: string;
+  experience: string;
+  invoiceToOrganization: boolean;
+  language: "nl" | "en";
+  hasDiscountCode: boolean;
+}
+
+function loadRegistrations(): StoredRegistration[] {
+  try {
+    return JSON.parse(fs.readFileSync(REGISTRATIONS_FILE, "utf-8"));
+  } catch {
+    return [];
+  }
+}
+
+function storeRegistration(reg: any) {
+  fs.mkdirSync(DATA_DIR, { recursive: true });
+  const registrations = loadRegistrations();
+  registrations.push({
+    id: reg.id,
+    createdAt: reg.createdAt,
+    experience: reg.experience,
+    invoiceToOrganization: !!reg.invoiceToOrganization,
+    language: reg.language === "en" ? "en" : "nl",
+    hasDiscountCode: !!reg.discountCode,
+  });
+  fs.writeFileSync(REGISTRATIONS_FILE, JSON.stringify(registrations, null, 2));
+}
+
+function getRegistrationStats() {
+  const registrations = loadRegistrations();
+  const total = registrations.length;
+
+  const experienceBreakdown: Record<string, number> = {};
+  let invoiceToOrganizationCount = 0;
+  for (const r of registrations) {
+    experienceBreakdown[r.experience] = (experienceBreakdown[r.experience] || 0) + 1;
+    if (r.invoiceToOrganization) invoiceToOrganizationCount++;
+  }
+
+  return {
+    total,
+    capacity: TRAINING_CAPACITY,
+    seatsRemaining: Math.max(0, TRAINING_CAPACITY - total),
+    experienceBreakdown,
+    invoiceToOrganizationCount,
+  };
+}
+
+function getGoatCounterPageviews(siteId: number): { pageviews: number; visits: number } {
+  try {
+    const query = `select coalesce(sum(total),0) as pageviews from hit_counts where site_id = ${siteId};`;
+    const pvOut = execFileSync("sqlite3", ["-json", "-readonly", GOATCOUNTER_DB, query], { encoding: "utf-8" });
+    const pageviews = JSON.parse(pvOut)[0]?.pageviews ?? 0;
+
+    const visitQuery = `select count(*) as visits from hits where site_id = ${siteId} and first_visit = 1;`;
+    const visitOut = execFileSync("sqlite3", ["-json", "-readonly", GOATCOUNTER_DB, visitQuery], { encoding: "utf-8" });
+    const visits = JSON.parse(visitOut)[0]?.visits ?? 0;
+
+    return { pageviews, visits };
+  } catch (err) {
+    console.error("[API] Failed to read GoatCounter stats:", err);
+    return { pageviews: 0, visits: 0 };
+  }
+}
 
 async function startServer() {
   const app = express();
@@ -19,6 +101,12 @@ async function startServer() {
       const reg = req.body;
       
       console.log(`[API] Received registration for ${reg.firstName} ${reg.lastName} (${reg.email})`);
+
+      try {
+        storeRegistration(reg);
+      } catch (err) {
+        console.error("[API] Failed to persist registration for stats:", err);
+      }
 
       const smtpHost = process.env.SMTP_HOST;
       const smtpPort = process.env.SMTP_PORT;
@@ -404,6 +492,27 @@ Stichting Duurzaam AI
         details: error.message
       });
     }
+  });
+
+  // Public, read-only stats endpoint (no PII) combining registration and traffic data
+  app.get("/api/stats", (req, res) => {
+    const origin = req.headers.origin;
+    if (origin && STATS_ALLOWED_ORIGINS.has(origin)) {
+      res.setHeader("Access-Control-Allow-Origin", origin);
+    }
+
+    const registrations = getRegistrationStats();
+    const hoofdwebsite = getGoatCounterPageviews(GOATCOUNTER_SITE_HOOFDWEBSITE);
+    const training = getGoatCounterPageviews(GOATCOUNTER_SITE_TRAINING);
+
+    return res.status(200).json({
+      registrations,
+      traffic: {
+        hoofdwebsite,
+        training,
+      },
+      generatedAt: new Date().toISOString(),
+    });
   });
 
   // Vite middleware for development or serving build for production
