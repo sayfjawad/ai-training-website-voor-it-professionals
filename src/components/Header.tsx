@@ -16,6 +16,7 @@ export const Header: React.FC = () => {
     { href: "#practical", label: language === "nl" ? "Praktisch" : "Practical Info" },
     { href: "#trainer", label: language === "nl" ? "Trainer" : "Trainer" },
     { href: "#faq", label: language === "nl" ? "FAQ" : "FAQ" },
+    { href: "#statistieken", label: language === "nl" ? "Statistieken" : "Statistics" },
   ];
 
   return (

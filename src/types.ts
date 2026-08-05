@@ -105,6 +105,19 @@ export interface TranslationContent {
       answer: string;
     }[];
   };
+  stats: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    seatsLabel: string;
+    seatsFilled: string;
+    seatsFull: string;
+    totalRegistrations: string;
+    totalVisitors: string;
+    experienceBreakdownTitle: string;
+    loading: string;
+    error: string;
+  };
   registration: {
     title: string;
     subtitle: string;
