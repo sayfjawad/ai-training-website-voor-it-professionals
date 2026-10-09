@@ -9,16 +9,16 @@ import { createServer as createViteServer } from "vite";
 // Load environment variables
 dotenv.config();
 
-const TRAINING_CAPACITY = 10;
+const TRAINING_CAPACITY = 15;
 const DATA_DIR = path.join(process.cwd(), "data");
 const REGISTRATIONS_FILE = path.join(DATA_DIR, "registrations.json");
 const GOATCOUNTER_DB = process.env.GOATCOUNTER_DB || "/home/sayf/goatcounter/db/goatcounter.sqlite3";
 const GOATCOUNTER_SITE_HOOFDWEBSITE = 1;
-const GOATCOUNTER_SITE_TRAINING = 2;
+const GOATCOUNTER_SITE_TRAINING = 3;
 const STATS_ALLOWED_ORIGINS = new Set([
   "https://stichtingduurzaamai.nl",
   "https://www.stichtingduurzaamai.nl",
-  "https://training.stichtingduurzaamai.nl",
+  "https://governance.stichtingduurzaamai.nl",
 ]);
 
 interface StoredRegistration {
