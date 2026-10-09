@@ -14,9 +14,7 @@ import { Program } from "./components/Program";
 import { PracticalInfo } from "./components/PracticalInfo";
 import { Trainer } from "./components/Trainer";
 import { Faq } from "./components/Faq";
-import { StatsSection } from "./components/StatsSection";
-import { RegistrationForm } from "./components/RegistrationForm";
-import { AdminPanel } from "./components/AdminPanel";
+import { TikkieCta } from "./components/TikkieCta";
 import { Footer } from "./components/Footer";
 
 export default function App() {
@@ -53,15 +51,9 @@ export default function App() {
           {/* Frequently Asked Questions */}
           <Faq />
 
-          {/* Live Statistics */}
-          <StatsSection />
-
-          {/* Action-Driving Registration Form */}
-          <RegistrationForm />
+          {/* Tikkie Payment CTA */}
+          <TikkieCta />
         </main>
-
-        {/* Real-time Administrative Registrations Reviewer (Export JSON/CSV) */}
-        <AdminPanel />
 
         {/* Brand Information & Direct Contact Footer */}
         <Footer />
