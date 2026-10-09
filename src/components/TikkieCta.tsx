@@ -3,7 +3,7 @@ import { useLanguage } from "../context/LanguageContext";
 import { ExternalLink, CheckCircle2 } from "lucide-react";
 
 // Update this URL once the Tikkie payment link is created
-const TIKKIE_URL = "https://tikkie.me/pay/PLACEHOLDER";
+const TIKKIE_URL = "https://tikkie.me/pay/Stichti5519/a1Nih6bHydBzAbyBsn7y64";
 
 export const TikkieCta: React.FC = () => {
   const { language, t } = useLanguage();
