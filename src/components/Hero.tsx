@@ -104,9 +104,9 @@ export const Hero: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="relative p-8 rounded-3xl bg-slate-900/90 border border-slate-800/80 shadow-2xl overflow-hidden backdrop-blur-xs flex flex-col space-y-6"
             >
-              {/* Early Bird Badge */}
+              {/* Intro Price Badge */}
               <div className="absolute top-0 right-0 bg-yellow-500 text-slate-950 font-black text-xs px-5 py-2 uppercase tracking-widest rounded-bl-2xl shadow-md animate-pulse">
-                {language === "nl" ? "Vroegboekkorting!" : "Early Bird!"}
+                {language === "nl" ? "Introductieprijs!" : "Intro Price!"}
               </div>
 
               <h2 className="text-xl font-bold text-slate-100 border-b border-slate-800 pb-4 flex items-center gap-2">
@@ -171,27 +171,24 @@ export const Hero: React.FC = () => {
               {/* Pricing Callout */}
               <div className="bg-slate-950/70 p-5 rounded-2xl border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
-                  <p className="text-xs text-slate-400 line-through mb-1">
-                    {language === "nl" ? `Normaal: ${t.practical.originalPrice}` : `Normal: ${t.practical.originalPrice}`}
-                  </p>
                   <div className="flex items-baseline gap-1.5 flex-wrap">
                     <span className="text-3xl font-black text-emerald-400">
                       {t.practical.discountPrice}
                     </span>
                     <span className="text-xs font-semibold text-emerald-400">
-                      {language === "nl" ? "(met vroegboekkortingscode)" : "(with early bird discount code)"}
+                      {language === "nl" ? "p.p. excl. btw" : "p.p. excl. VAT"}
                     </span>
                   </div>
                   <p className="text-[10px] text-slate-400 leading-tight mt-1.5">
-                    {language === "nl" ? "* Excl. BTW / Inclusief lunch & drankjes" : "* Excl. VAT / Includes lunch & refreshments"}
+                    {language === "nl" ? "Inclusief lunch & drankjes" : "Includes lunch & refreshments"}
                   </p>
                 </div>
                 <div className="sm:text-right">
                   <span className="inline-block bg-emerald-500/15 text-emerald-400 text-xs px-3 py-1.5 rounded-lg border border-emerald-500/30 font-bold">
-                    {language === "nl" ? "Bespaar 75% met jouw code!" : "Save 75% with your code!"}
+                    {language === "nl" ? "Introductieprijs!" : "Introductory price!"}
                   </span>
                   <p className="text-[11px] text-slate-400 mt-2">
-                    {language === "nl" ? "Slechts 10 plekken!" : "Only 10 slots!"}
+                    {language === "nl" ? "Slechts 15 plekken!" : "Only 15 slots!"}
                   </p>
                 </div>
               </div>

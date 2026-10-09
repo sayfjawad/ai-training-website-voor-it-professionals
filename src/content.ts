@@ -186,8 +186,8 @@ export const translations: { nl: TranslationContent; en: TranslationContent } = 
       levelDetails: "Geen technische AI-voorkennis vereist. Ervaring in een professionele organisatorische context is voldoende.",
       investmentLabel: "Investering",
       originalPrice: "€699",
-      discountPrice: "€299",
-      priceDetails: "Tijdelijke introductieprijs / Early Bird actie. Prijzen zijn per persoon en inclusief lunch en drankjes. Je ontvangt achteraf een btw-factuur.",
+      discountPrice: "€75",
+      priceDetails: "Introductieprijs. Per persoon inclusief lunch en drankjes. Je ontvangt achteraf een btw-factuur.",
       afterRegisterLabel: "Na je inschrijving",
       afterRegisterValue: [
         "Directe e-mail met ontvangstbevestiging en vervolgstappen.",
@@ -512,8 +512,8 @@ export const translations: { nl: TranslationContent; en: TranslationContent } = 
       levelDetails: "No technical AI background required. Experience in a professional organisational context is sufficient.",
       investmentLabel: "Investment",
       originalPrice: "€699",
-      discountPrice: "€299",
-      priceDetails: "Temporary promotional / Early Bird discount. Prices are per person and include catering and drinks. A professional invoice will be provided.",
+      discountPrice: "€75",
+      priceDetails: "Introductory price. Per person including lunch and drinks. A professional invoice will be provided.",
       afterRegisterLabel: "After Registration",
       afterRegisterValue: [
         "Immediate confirmation email with receipt and next steps.",
