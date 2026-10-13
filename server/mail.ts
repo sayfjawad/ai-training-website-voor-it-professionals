@@ -31,7 +31,7 @@ function traineeHtml(reg: Registration): string {
     ? `<h2 style="color:#059669;border-bottom:2px solid #34d399;padding-bottom:10px;margin-top:0;">Beste ${reg.firstName},</h2>
        <p style="font-size:14px;line-height:1.6;color:#475569;">Bedankt voor je aanmelding voor de <strong>AI Governance masterclass</strong> van Stichting Duurzaam AI. We hebben je aanmelding ontvangen.</p>
        <div style="margin:22px 0;padding:14px;border-left:4px solid #10b981;background:#f0fdf4;font-size:13px;line-height:1.6;">
-         Je hoort binnenkort meer van ons over de verdere details, waaronder locatie, datum en het verplichte voorbereidingsmateriaal (dat je 1 week vooraf ontvangt).</div>
+         Deelnemers ontvangen het leesmateriaal een week voorafgaand aan de masterclass en worden geacht dit vóór aanvang van de masterclass te hebben gelezen.</div>
        <table style="width:100%;border-collapse:collapse;font-size:13px;">
          <tr style="background:#f1f5f9;"><td style="padding:7px;font-weight:bold;width:120px;border-bottom:1px solid #e2e8f0;">Referentie:</td><td style="padding:7px;border-bottom:1px solid #e2e8f0;font-family:monospace;">${reg.id}</td></tr>
        </table>
@@ -41,7 +41,7 @@ function traineeHtml(reg: Registration): string {
     : `<h2 style="color:#059669;border-bottom:2px solid #34d399;padding-bottom:10px;margin-top:0;">Dear ${reg.firstName},</h2>
        <p style="font-size:14px;line-height:1.6;color:#475569;">Thank you for registering for the <strong>AI Governance masterclass</strong> by Stichting Duurzaam AI. We have received your registration.</p>
        <div style="margin:22px 0;padding:14px;border-left:4px solid #10b981;background:#f0fdf4;font-size:13px;line-height:1.6;">
-         We'll be in touch soon with further details, including location, date and the mandatory pre-reading material (sent 1 week in advance).</div>
+         Participants receive the reading material one week before the masterclass and are expected to have read it before the masterclass begins.</div>
        <table style="width:100%;border-collapse:collapse;font-size:13px;">
          <tr style="background:#f1f5f9;"><td style="padding:7px;font-weight:bold;width:120px;border-bottom:1px solid #e2e8f0;">Reference:</td><td style="padding:7px;border-bottom:1px solid #e2e8f0;font-family:monospace;">${reg.id}</td></tr>
        </table>
