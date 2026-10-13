@@ -1,36 +1,32 @@
-# AI Governance training site — Stichting Duurzaam AI
+# AI Governance Masterclass — Stichting Duurzaam AI
 
-Registration + payment site for the **AI Governance** training session.
-React + Vite frontend and a small Express server (`server.ts`) that serves both
-the static site and the API on port 3002.
+Registration site for the **AI Governance masterclass**.
 
 - **Live:** https://governance.stichtingduurzaamai.nl
-- **Admin ("who paid"):** https://governance.stichtingduurzaamai.nl/admin (needs `ADMIN_TOKEN`)
+- **Admin ("who registered"):** https://governance.stichtingduurzaamai.nl/admin (needs `ADMIN_TOKEN`)
 
 ## How it works
 
-A visitor pre-registers (name/email + optional phone/organization). The server
-creates a **per-registrant Tikkie payment request** via the Tikkie API v2
-(`referenceId` = the registration id), emails that unique payment link, and
-tracks who actually paid:
+The page is the original source document's compact HTML/CSS (self-contained
+`index.html`, inline styling, no framework). A visitor fills in the registration
+form (name/email + optional phone/organization); the form POSTs to `/api/register`,
+which stores the registrant and sends **one confirmation email** to them with the
+org inbox (`info@stichtingduurzaamai.nl`) in **CC**, so the org always knows
+someone registered and keeps a copy. No payment — it's sign-up only.
 
-- a background poller re-checks open payment requests (source of truth);
-- `POST /api/tikkie/webhook` gives instant updates;
-- on payment the registrant + org get a confirmation email and the `/admin`
-  dashboard flips the row to **Betaald**.
+Config is via env vars — see [.env.example](.env.example).
 
-If no Tikkie API credentials are configured it falls back to a single shared
-link (`TIKKIE_FALLBACK_URL`) — the site keeps working, but payments can't be
-attributed. All config is via env vars — see [.env.example](.env.example).
+> The `src/` React components are legacy and no longer used for the page; the
+> server (`server.ts`) serves `dist/index.html`, the API and `/admin`.
 
 ## Run locally
 
 ```bash
 npm install
-cp .env.example .env   # fill in SMTP + (optionally) Tikkie + ADMIN_TOKEN
+cp .env.example .env   # fill in SMTP + ADMIN_TOKEN
 npm run dev            # http://localhost:3002
 npm run lint           # tsc --noEmit
-npm run build          # vite build + esbuild server -> dist/
+npm run build          # vite (static index.html) + esbuild server -> dist/
 ```
 
 ## Deploy
@@ -38,13 +34,3 @@ npm run build          # vite build + esbuild server -> dist/
 Containerized (`Dockerfile`) and running on the **k3s multicode cluster** (pod on
 c4130, public edge = nginx on vmi2702091). Full runbook: **[k8s/README.md](k8s/README.md)**.
 Infra docs: `infra-landscape/services/ai-governance.md`.
-
-## Status / finishing later
-
-✅ Built, deployed, SMTP live, admin dashboard live.
-
-⏳ **One thing left:** Tikkie runs in **fallback mode** (shared link, no per-person
-tracking) until Tikkie Business API credentials exist. To finish — get a sandbox
-API key, run `npm run tikkie:apptoken` for an app token, put both in the
-`ai-governance-env` secret and `rollout restart`. Step-by-step in
-[k8s/README.md](k8s/README.md) and `infra-landscape/services/ai-governance.md`.

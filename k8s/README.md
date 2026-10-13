@@ -23,8 +23,7 @@ kubectl --context k3s-multicode -n stichting create secret docker-registry ghcr-
   --docker-password=<GHCR_PAT> --docker-email=sayf@multicode.nl
 
 # App env secret — copy 20-secret.example.yaml to 20-secret.yaml, fill in the
-# TransIP SMTP creds + a long random ADMIN_TOKEN (and Tikkie creds once you have
-# them), then:
+# TransIP SMTP creds + a long random ADMIN_TOKEN, then:
 kubectl --context k3s-multicode apply -f 20-secret.yaml
 #   (20-secret.yaml is gitignored — never commit real credentials)
 ```
@@ -62,18 +61,11 @@ sudo nginx -t && sudo systemctl reload nginx
 sudo systemctl disable --now ai-governance.service   # retire the old :3004 backend
 ```
 
-## 4. Tikkie webhook (optional — polling is the source of truth)
-
-```bash
-curl -s https://api-sandbox.abnamro.com/v2/tikkie/paymentrequestssubscription \
-  -H "Api-Key: $TIKKIE_API_KEY" -H "X-App-Token: $TIKKIE_APP_TOKEN" \
-  -H 'Content-Type: application/json' \
-  -d '{"url":"https://governance.stichtingduurzaamai.nl/api/tikkie/webhook"}'
-```
-
-## Who-paid dashboard
+## Who-registered dashboard
 
 `https://governance.stichtingduurzaamai.nl/admin` — enter `ADMIN_TOKEN`.
+(Registration is sign-up only — no payment. Each confirmation email CCs
+`info@stichtingduurzaamai.nl`.)
 
 ## Updating the app
 
