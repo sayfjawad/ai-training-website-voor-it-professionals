@@ -39,7 +39,7 @@ export const Program: React.FC = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <span className="text-sm font-bold uppercase tracking-widest text-emerald-600">
-            {language === "nl" ? "HET DAGPROGRAMMA" : "DAILY AGENDA"}
+            {language === "nl" ? "WAT KOMT AAN BOD" : "WHAT THIS SESSION COVERS"}
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2 font-sans tracking-tight">
             {t.program.title}
@@ -77,12 +77,8 @@ export const Program: React.FC = () => {
                 >
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                     
-                    {/* Time & Title */}
+                    {/* Title */}
                     <div className="flex flex-wrap items-center gap-3">
-                      <div className="flex items-center gap-1.5 text-xs font-bold text-slate-400 bg-slate-100 px-2.5 py-1 rounded-md">
-                        <Clock className="w-3.5 h-3.5" />
-                        <span>{block.time}</span>
-                      </div>
                       <h3 className={`text-base font-bold ${
                         isSpecialBlock ? "text-slate-700" : "text-slate-950"
                       }`}>

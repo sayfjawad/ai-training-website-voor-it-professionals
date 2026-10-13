@@ -1,10 +1,10 @@
 import React from "react";
 import { useLanguage } from "../context/LanguageContext";
 import { motion } from "motion/react";
-import { Calendar, MapPin, Clock, Users, ChevronRight, Award } from "lucide-react";
+import { ChevronRight, Award } from "lucide-react";
 
 export const Hero: React.FC = () => {
-  const { language, t } = useLanguage();
+  const { t } = useLanguage();
 
   return (
     <section
@@ -26,9 +26,9 @@ export const Hero: React.FC = () => {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-12 gap-12 items-center">
-          
+
           {/* Hero Main Copy */}
-          <div className="lg:col-span-7 flex flex-col items-start space-y-6 text-left">
+          <div className="lg:col-span-12 max-w-3xl flex flex-col items-start space-y-6 text-left">
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
@@ -57,21 +57,6 @@ export const Hero: React.FC = () => {
               {t.hero.subtitle}
             </motion.p>
 
-            {/* Quick Benefits Checklist */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-slate-300 py-3 w-full"
-            >
-              {t.intro.whyJoinPoints.slice(1, 5).map((point, idx) => (
-                <div key={idx} className="flex items-start gap-2.5">
-                  <span className="text-emerald-400 mt-0.5 text-base">✔</span>
-                  <span className="font-medium text-[13.5px] leading-snug">{point}</span>
-                </div>
-              ))}
-            </motion.div>
-
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -93,110 +78,6 @@ export const Hero: React.FC = () => {
               >
                 {t.hero.ctaSecondary}
               </a>
-            </motion.div>
-          </div>
-
-          {/* Hero Promotional Info Card */}
-          <div className="lg:col-span-5 w-full">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="relative p-8 rounded-3xl bg-slate-900/90 border border-slate-800/80 shadow-2xl overflow-hidden backdrop-blur-xs flex flex-col space-y-6"
-            >
-              {/* Intro Price Badge */}
-              <div className="absolute top-0 right-0 bg-yellow-500 text-slate-950 font-black text-xs px-5 py-2 uppercase tracking-widest rounded-bl-2xl shadow-md animate-pulse">
-                {language === "nl" ? "Introductieprijs!" : "Intro Price!"}
-              </div>
-
-              <h2 className="text-xl font-bold text-slate-100 border-b border-slate-800 pb-4 flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
-                {language === "nl" ? "Praktijkdetails" : "Training Specifications"}
-              </h2>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {/* Date */}
-                <div className="flex items-start gap-3">
-                  <div className="p-3 bg-slate-800/60 rounded-2xl text-emerald-400">
-                    <Calendar className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-slate-400 uppercase tracking-wider font-semibold">
-                      {t.practical.dateLabel}
-                    </p>
-                    <p className="text-sm font-bold text-slate-100">{t.practical.dateValue}</p>
-                  </div>
-                </div>
-
-                {/* Time */}
-                <div className="flex items-start gap-3">
-                  <div className="p-3 bg-slate-800/60 rounded-2xl text-emerald-400">
-                    <Clock className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-slate-400 uppercase tracking-wider font-semibold">
-                      {t.practical.timeLabel}
-                    </p>
-                    <p className="text-sm font-bold text-slate-100">{t.practical.timeValue}</p>
-                  </div>
-                </div>
-
-                {/* Location */}
-                <div className="flex items-start gap-3">
-                  <div className="p-3 bg-slate-800/60 rounded-2xl text-emerald-400">
-                    <MapPin className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-slate-400 uppercase tracking-wider font-semibold">
-                      {t.practical.locationLabel}
-                    </p>
-                    <p className="text-sm font-bold text-slate-100">{t.practical.locationValue}</p>
-                  </div>
-                </div>
-
-                {/* Group Size */}
-                <div className="flex items-start gap-3">
-                  <div className="p-3 bg-slate-800/60 rounded-2xl text-emerald-400">
-                    <Users className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-slate-400 uppercase tracking-wider font-semibold">
-                      {t.practical.groupSizeLabel}
-                    </p>
-                    <p className="text-sm font-bold text-slate-100">{t.practical.groupSizeValue}</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Pricing Callout */}
-              <div className="bg-slate-950/70 p-5 rounded-2xl border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <div>
-                  <div className="flex items-baseline gap-1.5 flex-wrap">
-                    <span className="text-3xl font-black text-emerald-400">
-                      {t.practical.discountPrice}
-                    </span>
-                    <span className="text-xs font-semibold text-emerald-400">
-                      {language === "nl" ? "p.p. excl. btw" : "p.p. excl. VAT"}
-                    </span>
-                  </div>
-                  <p className="text-[10px] text-slate-400 leading-tight mt-1.5">
-                    {language === "nl" ? "Inclusief lunch & drankjes" : "Includes lunch & refreshments"}
-                  </p>
-                </div>
-                <div className="sm:text-right">
-                  <span className="inline-block bg-emerald-500/15 text-emerald-400 text-xs px-3 py-1.5 rounded-lg border border-emerald-500/30 font-bold">
-                    {language === "nl" ? "Introductieprijs!" : "Introductory price!"}
-                  </span>
-                  <p className="text-[11px] text-slate-400 mt-2">
-                    {language === "nl" ? "Slechts 15 plekken!" : "Only 15 slots!"}
-                  </p>
-                </div>
-              </div>
-
-              {/* Bottom Quick Note */}
-              <div className="text-center text-xs text-slate-400 italic">
-                {language === "nl" ? "✔ Geen AI-voorkennis nodig" : "✔ No prior AI experience required"}
-              </div>
             </motion.div>
           </div>
 

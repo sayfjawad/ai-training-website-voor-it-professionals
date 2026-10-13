@@ -10,13 +10,10 @@ export const Header: React.FC = () => {
 
   const navLinks = [
     { href: "#intro", label: language === "nl" ? "Over de training" : "About the Course" },
-    { href: "#objectives", label: language === "nl" ? "Leerdoelen" : "Learning Objectives" },
+    { href: "#objectives", label: language === "nl" ? "Waarde & resultaten" : "Value & Outcomes" },
+    { href: "#program", label: language === "nl" ? "Onderwerpen" : "Topics" },
     { href: "#audience", label: language === "nl" ? "Voor wie?" : "Target Audience" },
-    { href: "#program", label: language === "nl" ? "Programma" : "Agenda" },
-    { href: "#practical", label: language === "nl" ? "Praktisch" : "Practical Info" },
-    { href: "#trainer", label: language === "nl" ? "Trainer" : "Trainer" },
-    { href: "#faq", label: language === "nl" ? "FAQ" : "FAQ" },
-    { href: "#statistieken", label: language === "nl" ? "Statistieken" : "Statistics" },
+    { href: "#trainer", label: language === "nl" ? "Spreker" : "Speaker" },
   ];
 
   return (

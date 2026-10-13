@@ -1,6 +1,6 @@
 import React from "react";
 import { useLanguage } from "../context/LanguageContext";
-import { Users2, ShieldAlert, GraduationCap, ArrowRight, CheckCircle } from "lucide-react";
+import { Users2, ShieldAlert, GraduationCap } from "lucide-react";
 
 export const TargetAudience: React.FC = () => {
   const { language, t } = useLanguage();
@@ -26,55 +26,22 @@ export const TargetAudience: React.FC = () => {
         {/* Audience Content Grid */}
         <div className="grid lg:grid-cols-12 gap-10 items-stretch">
           
-          {/* Left Column: Tasks / Herken je dit? (Tasks & Ideal List) */}
-          <div className="lg:col-span-8 grid md:grid-cols-2 gap-8">
-            
-            {/* Daily Tasks Card */}
-            <div className="p-8 rounded-3xl bg-slate-50 border border-slate-200/60 shadow-xs flex flex-col">
+          {/* Left Column: Roles / domains */}
+          <div className="lg:col-span-8">
+
+            {/* Roles Card */}
+            <div className="p-8 rounded-3xl bg-slate-50 border border-slate-200/60 shadow-xs flex flex-col h-full">
               <h3 className="text-lg font-bold text-slate-950 mb-5 flex items-center gap-2">
                 <Users2 className="w-5 h-5 text-emerald-600" />
                 {t.audience.tasksTitle}
               </h3>
-              <div className="space-y-3.5 flex-1">
+              <div className="grid sm:grid-cols-2 gap-x-8 gap-y-3.5 flex-1">
                 {t.audience.tasksList.map((task, idx) => (
                   <div key={idx} className="flex items-start gap-2.5">
                     <span className="text-emerald-500 mt-1 flex-shrink-0 text-xs">●</span>
                     <span className="text-sm font-medium text-slate-700 leading-snug">{task}</span>
                   </div>
                 ))}
-              </div>
-            </div>
-
-            {/* Ideal If... Card */}
-            <div className="p-8 rounded-3xl bg-emerald-950 text-white shadow-md flex flex-col justify-between">
-              <div>
-                <h3 className="text-lg font-bold text-emerald-300 mb-5 flex items-center gap-2">
-                  <CheckCircle className="w-5 h-5 text-emerald-400" />
-                  {t.audience.idealTitle}
-                </h3>
-                <div className="space-y-4">
-                  {t.audience.idealList.map((item, idx) => (
-                    <div key={idx} className="flex items-start gap-3">
-                      <span className="text-emerald-400 mt-0.5 text-base">✔</span>
-                      <span className="text-sm font-light text-slate-200 leading-relaxed">{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Bottom Micro Call-to-Action inside Card */}
-              <div className="border-t border-emerald-800/80 pt-6 mt-6 flex items-center justify-between">
-                <span className="text-xs text-slate-300">
-                  {language === "nl" ? "Spreekt dit je aan?" : "Sounds like you?"}
-                </span>
-                <a
-                  id="lnk-audience-cta"
-                  href="#register"
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-400 hover:text-white transition-colors"
-                >
-                  {language === "nl" ? "Meld je aan" : "Enroll now"}
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </a>
               </div>
             </div>
 

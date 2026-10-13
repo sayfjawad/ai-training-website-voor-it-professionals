@@ -11,9 +11,7 @@ import { Introduction } from "./components/Introduction";
 import { Objectives } from "./components/Objectives";
 import { TargetAudience } from "./components/TargetAudience";
 import { Program } from "./components/Program";
-import { PracticalInfo } from "./components/PracticalInfo";
 import { Trainer } from "./components/Trainer";
-import { Faq } from "./components/Faq";
 import { PreRegistrationForm } from "./components/PreRegistrationForm";
 import { Footer } from "./components/Footer";
 
@@ -39,17 +37,11 @@ export default function App() {
           {/* Target Audience */}
           <TargetAudience />
 
-          {/* Program Timeline */}
+          {/* What this session covers */}
           <Program />
 
-          {/* Practical Info Specs */}
-          <PracticalInfo />
-
-          {/* Trainer and Academy Details */}
+          {/* Speaker & foundation */}
           <Trainer />
-
-          {/* Frequently Asked Questions */}
-          <Faq />
 
           {/* Pre-registration form → Tikkie payment link via email */}
           <PreRegistrationForm />
