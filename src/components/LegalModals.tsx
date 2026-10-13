@@ -43,7 +43,7 @@ export const PrivacyModal: React.FC<LegalModalProps> = ({ isOpen, onClose }) => 
 
                 <div>
                   <h4 className="font-bold text-slate-900">Welke gegevens verwerken wij?</h4>
-                  <p className="mt-1">Bij inschrijving voor een training kunnen wij de volgende gegevens verwerken:</p>
+                  <p className="mt-1">Bij inschrijving voor een masterclass kunnen wij de volgende gegevens verwerken:</p>
                   <ul className="list-disc pl-5 mt-2 space-y-1">
                     <li>Naam (voor- en achternaam);</li>
                     <li>E-mailadres;</li>
@@ -60,9 +60,9 @@ export const PrivacyModal: React.FC<LegalModalProps> = ({ isOpen, onClose }) => 
                   <p className="mt-1">Wij gebruiken deze gegevens uitsluitend voor de volgende doeleinden:</p>
                   <ul className="list-disc pl-5 mt-2 space-y-1">
                     <li>Registratie en administratieve verwerking van deelnemers;</li>
-                    <li>Communicatie en praktische afstemming rondom de training;</li>
+                    <li>Communicatie en praktische afstemming rondom de masterclass;</li>
                     <li>Boekhouding en facturatie;</li>
-                    <li>Organisatie van de trainingsdag (zoals cateringbeheer via dieetwensen).</li>
+                    <li>Organisatie van de masterclassdag (zoals cateringbeheer via dieetwensen).</li>
                   </ul>
                 </div>
 
@@ -104,7 +104,7 @@ export const PrivacyModal: React.FC<LegalModalProps> = ({ isOpen, onClose }) => 
 
                 <div>
                   <h4 className="font-bold text-slate-900">What data do we process?</h4>
-                  <p className="mt-1">Upon registering for a training course, we may process the following data:</p>
+                  <p className="mt-1">Upon registering for a masterclass, we may process the following data:</p>
                   <ul className="list-disc pl-5 mt-2 space-y-1">
                     <li>Full Name (first and last name);</li>
                     <li>Email Address;</li>
@@ -121,7 +121,7 @@ export const PrivacyModal: React.FC<LegalModalProps> = ({ isOpen, onClose }) => 
                   <p className="mt-1">We use this data exclusively for the following purposes:</p>
                   <ul className="list-disc pl-5 mt-2 space-y-1">
                     <li>Registration and administrative management of participants;</li>
-                    <li>Communication and logistical coordination regarding the training course;</li>
+                    <li>Communication and logistical coordination regarding the masterclass;</li>
                     <li>Accounting and professional invoicing;</li>
                     <li>Day-of organization (such as catering coordination via dietary preferences).</li>
                   </ul>
@@ -194,7 +194,7 @@ export const TermsModal: React.FC<LegalModalProps> = ({ isOpen, onClose }) => {
         {/* Header */}
         <div className="bg-slate-50 px-6 py-5 border-b border-slate-200/60 flex items-center justify-between flex-shrink-0">
           <h3 className="text-lg font-bold text-slate-900 font-sans" id="modal-title">
-            {language === "nl" ? "Algemene Voorwaarden Trainingen" : "General Terms & Conditions"}
+            {language === "nl" ? "Algemene Voorwaarden Masterclasses" : "General Terms & Conditions"}
           </h3>
           <button
             onClick={onClose}
@@ -214,7 +214,7 @@ export const TermsModal: React.FC<LegalModalProps> = ({ isOpen, onClose }) => {
                 <div>
                   <h4 className="font-bold text-slate-900">1. Organisatie</h4>
                   <p className="mt-1">
-                    Deze algemene voorwaarden zijn van toepassing op alle trainingen en workshops die worden georganiseerd door:
+                    Deze algemene voorwaarden zijn van toepassing op alle masterclasses en workshops die worden georganiseerd door:
                   </p>
                   <p className="mt-1 font-semibold text-slate-800">Stichting Duurzaam AI</p>
                   <p className="text-xs text-slate-500">
@@ -225,7 +225,7 @@ export const TermsModal: React.FC<LegalModalProps> = ({ isOpen, onClose }) => {
                 <div>
                   <h4 className="font-bold text-slate-900">2. Inschrijving</h4>
                   <p className="mt-1">
-                    Een inschrijving voor de training wordt definitief en bindend nadat:
+                    Een inschrijving voor de masterclass wordt definitief en bindend nadat:
                   </p>
                   <ul className="list-disc pl-5 mt-2 space-y-1">
                     <li>Het online inschrijfformulier volledig en naar waarheid is ingevuld;</li>
@@ -237,7 +237,7 @@ export const TermsModal: React.FC<LegalModalProps> = ({ isOpen, onClose }) => {
                 <div>
                   <h4 className="font-bold text-slate-900">3. Deelnamekosten</h4>
                   <p className="mt-1">
-                    De deelnamekosten staan vermeld op de trainingspagina.
+                    De deelnamekosten staan vermeld op de masterclasspagina.
                   </p>
                 </div>
 
@@ -252,9 +252,9 @@ export const TermsModal: React.FC<LegalModalProps> = ({ isOpen, onClose }) => {
                   <h4 className="font-bold text-slate-900">5. Annulering door deelnemer</h4>
                   <p className="mt-1">Annulering dient schriftelijk te geschieden via e-mail aan Stichting Duurzaam AI. Hierbij gelden de volgende voorwaarden:</p>
                   <ul className="list-disc pl-5 mt-2 space-y-1">
-                    <li><strong>Tot 14 kalenderdagen vóór de trainingsdatum:</strong> Volledig kosteloos annuleren;</li>
-                    <li><strong>Binnen 14 kalenderdagen vóór de trainingsdatum:</strong> 50% van het deelnamebedrag wordt in rekening gebracht;</li>
-                    <li><strong>Binnen 7 kalenderdagen vóór de trainingsdatum of bij niet verschijnen (no-show):</strong> Het volledige deelnamebedrag (100%) blijft verschuldigd.</li>
+                    <li><strong>Tot 14 kalenderdagen vóór de masterclassdatum:</strong> Volledig kosteloos annuleren;</li>
+                    <li><strong>Binnen 14 kalenderdagen vóór de masterclassdatum:</strong> 50% van het deelnamebedrag wordt in rekening gebracht;</li>
+                    <li><strong>Binnen 7 kalenderdagen vóór de masterclassdatum of bij niet verschijnen (no-show):</strong> Het volledige deelnamebedrag (100%) blijft verschuldigd.</li>
                     <li><strong>Vervanging:</strong> Indien je verhinderd bent, mag je te allen tijde kosteloos een vervangende deelnemer aanwijzen. Meld dit uiterlijk één werkdag voor aanvang per e-mail aan ons.</li>
                   </ul>
                 </div>
@@ -263,25 +263,25 @@ export const TermsModal: React.FC<LegalModalProps> = ({ isOpen, onClose }) => {
                   <h4 className="font-bold text-slate-900">6. Annulering of wijziging door Stichting Duurzaam AI</h4>
                   <p className="mt-1">Stichting Duurzaam AI behoudt zich het recht voor om:</p>
                   <ul className="list-disc pl-5 mt-2 space-y-1">
-                    <li>De trainingsdatum of -locatie aan te passen;</li>
-                    <li>De training te annuleren of uit te stellen bij overmacht of onvoldoende deelnemers.</li>
+                    <li>De masterclassdatum of -locatie aan te passen;</li>
+                    <li>De masterclass te annuleren of uit te stellen bij overmacht of onvoldoende deelnemers.</li>
                   </ul>
                   <p className="mt-2">
-                    Indien de training door overmacht wordt geannuleerd, stellen we je direct op de hoogte en storten we het reeds betaalde deelnamebedrag onverwijld en volledig terug. Stichting Duurzaam AI is niet aansprakelijk voor indirecte schade of bijkomende gemaakte kosten (zoals reis- of verblijfskosten).
+                    Indien de masterclass door overmacht wordt geannuleerd, stellen we je direct op de hoogte en storten we het reeds betaalde deelnamebedrag onverwijld en volledig terug. Stichting Duurzaam AI is niet aansprakelijk voor indirecte schade of bijkomende gemaakte kosten (zoals reis- of verblijfskosten).
                   </p>
                 </div>
 
                 <div>
-                  <h4 className="font-bold text-slate-900">7. Inhoud van de training</h4>
+                  <h4 className="font-bold text-slate-900">7. Inhoud van de masterclass</h4>
                   <p className="mt-1">
-                    De training is gericht op het vergroten van praktische vaardigheden rondom AI binnen IT. Stichting Duurzaam AI streeft naar actuele informatie, maar kan de permanente beschikbaarheid van specifieke AI-tools niet garanderen wegens snelle technologische evoluties.
+                    De masterclass is gericht op het vergroten van praktische vaardigheden rondom AI binnen IT. Stichting Duurzaam AI streeft naar actuele informatie, maar kan de permanente beschikbaarheid van specifieke AI-tools niet garanderen wegens snelle technologische evoluties.
                   </p>
                 </div>
 
                 <div>
                   <h4 className="font-bold text-slate-900">8. Intellectueel Eigendom</h4>
                   <p className="mt-1">
-                    Alle tijdens de training verstrekte presentaties, oefeningen en overige materialen zijn auteursrechtelijk beschermd en uitsluitend bestemd voor persoonlijk gebruik door de deelnemer. Het is ten strengste verboden deze materialen te kopiëren, verspreiden of te exploiteren voor commerciële of concurrerende doeleinden zonder uitdrukkelijke schriftelijke toestemming.
+                    Alle tijdens de masterclass verstrekte presentaties, oefeningen en overige materialen zijn auteursrechtelijk beschermd en uitsluitend bestemd voor persoonlijk gebruik door de deelnemer. Het is ten strengste verboden deze materialen te kopiëren, verspreiden of te exploiteren voor commerciële of concurrerende doeleinden zonder uitdrukkelijke schriftelijke toestemming.
                   </p>
                 </div>
 
@@ -373,7 +373,7 @@ export const TermsModal: React.FC<LegalModalProps> = ({ isOpen, onClose }) => {
                 <div>
                   <h4 className="font-bold text-slate-900">9. Liability Limit</h4>
                   <p className="mt-1">
-                    Stichting Duurzaam AI carries out training with professional rigor. However, the participant remains solely responsible for the technical application of the knowledge inside their corporate systems.
+                    Stichting Duurzaam AI carries out masterclass with professional rigor. However, the participant remains solely responsible for the technical application of the knowledge inside their corporate systems.
                   </p>
                 </div>
               </>

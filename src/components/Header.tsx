@@ -9,7 +9,7 @@ export const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { href: "#intro", label: language === "nl" ? "Over de training" : "About the Course" },
+    { href: "#intro", label: language === "nl" ? "Over de masterclass" : "About the Masterclass" },
     { href: "#objectives", label: language === "nl" ? "Waarde & resultaten" : "Value & Outcomes" },
     { href: "#program", label: language === "nl" ? "Onderwerpen" : "Topics" },
     { href: "#audience", label: language === "nl" ? "Voor wie?" : "Target Audience" },

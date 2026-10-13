@@ -39,7 +39,7 @@ export const Program: React.FC = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <span className="text-sm font-bold uppercase tracking-widest text-emerald-600">
-            {language === "nl" ? "WAT KOMT AAN BOD" : "WHAT THIS SESSION COVERS"}
+            {language === "nl" ? "WAT KOMT AAN BOD" : "WHAT THIS MASTERCLASS COVERS"}
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2 font-sans tracking-tight">
             {t.program.title}

@@ -16,7 +16,7 @@ export const Introduction: React.FC = () => {
           <div className="lg:col-span-12 max-w-3xl flex flex-col space-y-8 text-left">
             <div>
               <span className="text-sm font-bold uppercase tracking-widest text-emerald-600">
-                {language === "nl" ? "Over de Training" : "About the Course"}
+                {language === "nl" ? "Over de masterclass" : "About the Masterclass"}
               </span>
               <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2 font-sans tracking-tight">
                 {t.intro.title}

@@ -1,4 +1,4 @@
-// Single source of truth for the training's price and the Tikkie fallback link
+// Single source of truth for the masterclass's price and the Tikkie fallback link
 // used by the frontend. The server generates a per-registrant Tikkie link via
 // the Tikkie API; this static link is only a backup shown on the success screen
 // (and used by the server when the Tikkie API is not configured).

@@ -16,7 +16,7 @@ export const translations: { nl: TranslationContent; en: TranslationContent } = 
       title: "Waarom AI er nu toe doet",
       lead: "De markt verschuift, klantverwachtingen veranderen, en AI beweegt snel van experiment naar de dagelijkse bedrijfsvoering, producten en besluitvorming.",
       description:
-        "Deze foundationele bewustwordingssessie biedt een praktische inleiding tot AI governance en de kernconcepten die nodig zijn om AI effectief te begrijpen, te beheren en te besturen. De eerste stap is zicht: wat gebeurt er, waar sta je vandaag, welke capaciteiten heb je, welke risico's dienen zich aan, welke kansen zijn er en welke richting kies je vervolgens? Deze sessie biedt die fundering.",
+        "Deze foundationele masterclass biedt een praktische inleiding tot AI governance en de kernconcepten die nodig zijn om AI effectief te begrijpen, te beheren en te besturen. De eerste stap is zicht: wat gebeurt er, waar sta je vandaag, welke capaciteiten heb je, welke risico's dienen zich aan, welke kansen zijn er en welke richting kies je vervolgens? Deze masterclass biedt die fundering.",
       promiseTitle: "De centrale vraag",
       promiseText:
         "De vraag is niet langer óf AI jouw rol zal beïnvloeden, maar hoe goed je voorbereid bent op die verandering.",
@@ -27,7 +27,7 @@ export const translations: { nl: TranslationContent; en: TranslationContent } = 
     },
     objectives: {
       title: "Waarde & Resultaten",
-      subtitle: "Na de sessie kunnen deelnemers:",
+      subtitle: "Na de masterclass kunnen deelnemers:",
       items: [
         {
           title: "Begrijpen",
@@ -52,7 +52,7 @@ export const translations: { nl: TranslationContent; en: TranslationContent } = 
       ],
     },
     audience: {
-      title: "Voor wie is deze sessie?",
+      title: "Voor wie is deze masterclass?",
       subtitle: "Voor professionals die AI governance moeten begrijpen, zonder AI-specialist te hoeven zijn",
       description:
         "Voor professionals die AI governance moeten begrijpen, maar geen AI-specialist hoeven te zijn.",
@@ -73,13 +73,13 @@ export const translations: { nl: TranslationContent; en: TranslationContent } = 
       ],
       idealTitle: "",
       idealList: [],
-      notForTitle: "Wat deze sessie niet is",
+      notForTitle: "Wat deze masterclass niet is",
       notForText:
-        "Dit is geen technische AI-engineeringsessie. Er wordt niet gefocust op programmeren, modelontwikkeling, technische configuratie, platformspecifieke implementatie of tools die snel kunnen veranderen. Technologie evolueert, platformen veranderen en nieuwe tools vervangen oude. Wat waardevol blijft, is begrip van de richting, de benodigde capaciteiten en de risico's die beheerst moeten worden.",
+        "Dit is geen technische AI-engineeringmasterclass. Er wordt niet gefocust op programmeren, modelontwikkeling, technische configuratie, platformspecifieke implementatie of tools die snel kunnen veranderen. Technologie evolueert, platformen veranderen en nieuwe tools vervangen oude. Wat waardevol blijft, is begrip van de richting, de benodigde capaciteiten en de risico's die beheerst moeten worden.",
     },
     program: {
       title: "Wat komt er aan bod?",
-      subtitle: "De onderwerpen die we tijdens de sessie behandelen.",
+      subtitle: "De onderwerpen die we tijdens de masterclass behandelen.",
       timeline: [
         {
           time: "",
@@ -148,11 +148,11 @@ export const translations: { nl: TranslationContent; en: TranslationContent } = 
     },
     trainer: {
       title: "Jouw spreker",
-      subtitle: "Deze sessie wordt verzorgd vanuit Stichting Duurzaam AI.",
+      subtitle: "Deze masterclass wordt verzorgd vanuit Stichting Duurzaam AI.",
       intro: "",
       aboutFoundationTitle: "Over Stichting Duurzaam AI",
       aboutFoundationText:
-        "Deze training wordt mede mogelijk gemaakt door Stichting Duurzaam AI.",
+        "Wij vanuit Stichting Duurzaam AI organiseren en sponsoren deze masterclass. Het bestuur bekostigt zelf 4 plaatsen (4 × €75 = €300).",
       trainerCardTitle: "De spreker",
       trainers: [
         {
@@ -188,7 +188,7 @@ export const translations: { nl: TranslationContent; en: TranslationContent } = 
     },
     registration: {
       title: "Aanmelden & Betalen",
-      subtitle: "Wil je deelnemen aan deze sessie? Je kunt je eenvoudig aanmelden.",
+      subtitle: "Wil je deelnemen aan deze masterclass? Je kunt je eenvoudig aanmelden.",
       formTitle: "Aanmelden",
       personalData: "Jouw gegevens",
       firstName: "Voornaam *",
@@ -256,7 +256,7 @@ export const translations: { nl: TranslationContent; en: TranslationContent } = 
       title: "Why AI Matters Now",
       lead: "The market is shifting, client expectations are changing, and AI is moving rapidly from experimentation into everyday business operations, products, and decision-making.",
       description:
-        "This foundational awareness session provides a practical introduction to AI governance and the key concepts needed to understand, manage, and govern AI effectively. The first step is visibility: what is happening, where are you today, what capabilities do you have, what risks are emerging, what opportunities are available, and what direction should you take next? This session provides that foundation.",
+        "This foundational awareness masterclass provides a practical introduction to AI governance and the key concepts needed to understand, manage, and govern AI effectively. The first step is visibility: what is happening, where are you today, what capabilities do you have, what risks are emerging, what opportunities are available, and what direction should you take next? This masterclass provides that foundation.",
       promiseTitle: "The central question",
       promiseText:
         "The question is no longer whether AI will affect your role, but how prepared you are for that change.",
@@ -267,7 +267,7 @@ export const translations: { nl: TranslationContent; en: TranslationContent } = 
     },
     objectives: {
       title: "Value & Outcomes",
-      subtitle: "After the session, participants will be able to:",
+      subtitle: "After the masterclass, participants will be able to:",
       items: [
         {
           title: "Understand",
@@ -292,7 +292,7 @@ export const translations: { nl: TranslationContent; en: TranslationContent } = 
       ],
     },
     audience: {
-      title: "Who is this session for?",
+      title: "Who is this masterclass for?",
       subtitle: "For professionals who need to understand AI governance without becoming AI specialists",
       description:
         "For professionals who need to understand AI governance but do not need to be AI specialists.",
@@ -313,13 +313,13 @@ export const translations: { nl: TranslationContent; en: TranslationContent } = 
       ],
       idealTitle: "",
       idealList: [],
-      notForTitle: "What this session is not",
+      notForTitle: "What this masterclass is not",
       notForText:
-        "This is not a technical AI engineering session. It does not focus on coding, model development, technical configuration, platform-specific implementation, or tools that may change rapidly. Technology will evolve, platforms will change, and new tools will replace old ones. What remains valuable is understanding the direction of travel, the capabilities required, and the risks that must be managed.",
+        "This is not a technical AI engineering masterclass. It does not focus on coding, model development, technical configuration, platform-specific implementation, or tools that may change rapidly. Technology will evolve, platforms will change, and new tools will replace old ones. What remains valuable is understanding the direction of travel, the capabilities required, and the risks that must be managed.",
     },
     program: {
-      title: "What This Session Covers",
-      subtitle: "The topics we cover during the session.",
+      title: "What This Masterclass Covers",
+      subtitle: "The topics we cover during the masterclass.",
       timeline: [
         {
           time: "",
@@ -388,11 +388,11 @@ export const translations: { nl: TranslationContent; en: TranslationContent } = 
     },
     trainer: {
       title: "Your Speaker",
-      subtitle: "This session is delivered through Stichting Duurzaam AI.",
+      subtitle: "This masterclass is delivered through Stichting Duurzaam AI.",
       intro: "",
       aboutFoundationTitle: "About Stichting Duurzaam AI",
       aboutFoundationText:
-        "This training is made possible in part by Stichting Duurzaam AI (the Sustainable AI Foundation).",
+        "We at Stichting Duurzaam AI (the Sustainable AI Foundation) organise and sponsor this masterclass. The board funds 4 seats itself (4 × €75 = €300).",
       trainerCardTitle: "The speaker",
       trainers: [
         {
@@ -428,7 +428,7 @@ export const translations: { nl: TranslationContent; en: TranslationContent } = 
     },
     registration: {
       title: "Enroll & Pay",
-      subtitle: "Would you like to join this session? Registering is easy.",
+      subtitle: "Would you like to join this masterclass? Registering is easy.",
       formTitle: "Register",
       personalData: "Your details",
       firstName: "First Name *",

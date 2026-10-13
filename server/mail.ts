@@ -60,27 +60,27 @@ function traineePaymentHtml(reg: Registration, tikkieUrl: string): string {
   const details = `<h3 style="color:#059669;font-size:14px;margin:20px 0 6px;">${nl ? "Jouw aanmelding" : "Your registration"}</h3>
      <table style="width:100%;border-collapse:collapse;font-size:13px;">
        <tr style="background:#f1f5f9;"><td style="padding:7px;font-weight:bold;width:120px;border-bottom:1px solid #e2e8f0;">${nl ? "Referentie:" : "Reference:"}</td><td style="padding:7px;border-bottom:1px solid #e2e8f0;font-family:monospace;">${reg.id}</td></tr>
-       <tr><td style="padding:7px;font-weight:bold;border-bottom:1px solid #e2e8f0;">${nl ? "Sessie:" : "Session:"}</td><td style="padding:7px;border-bottom:1px solid #e2e8f0;">AI Governance</td></tr>
+       <tr><td style="padding:7px;font-weight:bold;border-bottom:1px solid #e2e8f0;">${nl ? "Masterclass:" : "Masterclass:"}</td><td style="padding:7px;border-bottom:1px solid #e2e8f0;">AI Governance</td></tr>
        <tr style="background:#f1f5f9;"><td style="padding:7px;font-weight:bold;border-bottom:1px solid #e2e8f0;">${nl ? "Prijs:" : "Price:"}</td><td style="padding:7px;border-bottom:1px solid #e2e8f0;">${price} p.p. (${nl ? "excl. btw" : "excl. VAT"})</td></tr>
      </table>`;
   return SHELL(
     nl
       ? `<h2 style="color:#059669;border-bottom:2px solid #34d399;padding-bottom:10px;margin-top:0;">Beste ${reg.firstName},</h2>
-         <p style="font-size:14px;line-height:1.6;color:#475569;">Bedankt voor je aanmelding voor de <strong>AI Governance</strong> sessie van Stichting Duurzaam AI!</p>
+         <p style="font-size:14px;line-height:1.6;color:#475569;">Bedankt voor je aanmelding voor de <strong>AI Governance</strong> masterclass van Stichting Duurzaam AI!</p>
          <p style="font-size:14px;line-height:1.6;color:#475569;">Om je aanmelding definitief te maken, betaal je je deelname van <strong>${price}</strong> via onderstaande Tikkie link:</p>
          ${btn}${copy}
          <div style="margin:24px 0;padding:14px;border-left:4px solid #10b981;background:#f0fdf4;font-size:13px;line-height:1.6;">
-           <strong>Na betaling</strong> ontvang je automatisch een definitieve bevestiging met alle sessiedetails, inclusief locatie en voorbereidingsmateriaal.</div>
+           <strong>Na betaling</strong> ontvang je automatisch een definitieve bevestiging met alle masterclassdetails, inclusief locatie en voorbereidingsmateriaal.</div>
          ${details}
          <p style="font-size:13px;line-height:1.5;color:#475569;margin-top:20px;">Vragen? Mail naar <a href="mailto:${ORG_EMAIL}">${ORG_EMAIL}</a>.</p>
          <p style="font-size:14px;color:#475569;margin-top:16px;">Met vriendelijke groet,<br/><strong>Stichting Duurzaam AI</strong></p>
          ${footer(new Date(reg.createdAt).toLocaleString("nl-NL"))}`
       : `<h2 style="color:#059669;border-bottom:2px solid #34d399;padding-bottom:10px;margin-top:0;">Dear ${reg.firstName},</h2>
-         <p style="font-size:14px;line-height:1.6;color:#475569;">Thank you for registering for the <strong>AI Governance</strong> session by Stichting Duurzaam AI!</p>
+         <p style="font-size:14px;line-height:1.6;color:#475569;">Thank you for registering for the <strong>AI Governance</strong> masterclass by Stichting Duurzaam AI!</p>
          <p style="font-size:14px;line-height:1.6;color:#475569;">To complete your registration, please pay the <strong>${price}</strong> participation fee via the Tikkie link below:</p>
          ${btn}${copy}
          <div style="margin:24px 0;padding:14px;border-left:4px solid #10b981;background:#f0fdf4;font-size:13px;line-height:1.6;">
-           <strong>After payment</strong> you will automatically receive a final confirmation with all session details, including location and preparatory material.</div>
+           <strong>After payment</strong> you will automatically receive a final confirmation with all masterclass details, including location and preparatory material.</div>
          ${details}
          <p style="font-size:13px;line-height:1.5;color:#475569;margin-top:20px;">Questions? Email <a href="mailto:${ORG_EMAIL}">${ORG_EMAIL}</a>.</p>
          <p style="font-size:14px;color:#475569;margin-top:16px;">Kind regards,<br/><strong>Stichting Duurzaam AI</strong></p>
@@ -95,18 +95,18 @@ function traineePaidHtml(reg: Registration): string {
   return SHELL(
     nl
       ? `<h2 style="color:#059669;border-bottom:2px solid #34d399;padding-bottom:10px;margin-top:0;">Betaling ontvangen — je plek is bevestigd! 🎉</h2>
-         <p style="font-size:14px;line-height:1.6;color:#475569;">Beste ${reg.firstName}, we hebben je betaling van <strong>${price}</strong> ontvangen. Je deelname aan de <strong>AI Governance</strong> sessie is hiermee definitief.</p>
+         <p style="font-size:14px;line-height:1.6;color:#475569;">Beste ${reg.firstName}, we hebben je betaling van <strong>${price}</strong> ontvangen. Je deelname aan de <strong>AI Governance</strong> masterclass is hiermee definitief.</p>
          <div style="margin:24px 0;padding:14px;border-left:4px solid #10b981;background:#f0fdf4;font-size:13px;line-height:1.6;">
-           We sturen je ruim voor de sessie een e-mail met de exacte locatie, het programma en voorbereidingsmateriaal.</div>
+           We sturen je ruim voor de masterclass een e-mail met de exacte locatie, het programma en voorbereidingsmateriaal.</div>
          <table style="width:100%;border-collapse:collapse;font-size:13px;">
            <tr style="background:#f1f5f9;"><td style="padding:7px;font-weight:bold;width:120px;border-bottom:1px solid #e2e8f0;">Referentie:</td><td style="padding:7px;border-bottom:1px solid #e2e8f0;font-family:monospace;">${reg.id}</td></tr>
          </table>
          <p style="font-size:14px;color:#475569;margin-top:16px;">Tot binnenkort!<br/><strong>Stichting Duurzaam AI</strong></p>
          ${footer(new Date().toLocaleString("nl-NL"))}`
       : `<h2 style="color:#059669;border-bottom:2px solid #34d399;padding-bottom:10px;margin-top:0;">Payment received — your seat is confirmed! 🎉</h2>
-         <p style="font-size:14px;line-height:1.6;color:#475569;">Dear ${reg.firstName}, we have received your payment of <strong>${price}</strong>. Your participation in the <strong>AI Governance</strong> session is now confirmed.</p>
+         <p style="font-size:14px;line-height:1.6;color:#475569;">Dear ${reg.firstName}, we have received your payment of <strong>${price}</strong>. Your participation in the <strong>AI Governance</strong> masterclass is now confirmed.</p>
          <div style="margin:24px 0;padding:14px;border-left:4px solid #10b981;background:#f0fdf4;font-size:13px;line-height:1.6;">
-           Well before the session we'll email you the exact location, the programme and preparatory material.</div>
+           Well before the masterclass we'll email you the exact location, the programme and preparatory material.</div>
          <table style="width:100%;border-collapse:collapse;font-size:13px;">
            <tr style="background:#f1f5f9;"><td style="padding:7px;font-weight:bold;width:120px;border-bottom:1px solid #e2e8f0;">Reference:</td><td style="padding:7px;border-bottom:1px solid #e2e8f0;font-family:monospace;">${reg.id}</td></tr>
          </table>
