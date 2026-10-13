@@ -17,9 +17,11 @@ spec:
       labels:
         app: ai-governance
     spec:
-      # Pin to the public control-plane VPS (only node with a public IP).
+      # Pin to c4130 (tailnet 100.64.0.14), same node as the other web apps.
+      # Public TLS edge is nginx on vmi2702091, which reverse-proxies
+      # governance.stichtingduurzaamai.nl -> http://100.64.0.14:5055 over the tailnet.
       nodeSelector:
-        kubernetes.io/hostname: vmi3419075
+        kubernetes.io/hostname: c4130
       imagePullSecrets:
         - name: ghcr-pull-secret
       containers:
@@ -28,6 +30,7 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 3002
+              hostPort: 5055 # reachable over the tailnet at 100.64.0.14:5055
           envFrom:
             - secretRef:
                 name: ai-governance-env

@@ -1,46 +1,18 @@
 # Deploy — AI Governance site on k3s (multicode cluster)
 
-Public web app on the **vmi3419075** control-plane VPS (only node with a public IP).
-Exposed via **ingress-nginx + cert-manager** (Let's Encrypt). Data on a `local-path` PVC.
+The app pod runs in k3s on **c4130** (tailnet `100.64.0.14`) and serves both the
+static site and the API on container port 3002, exposed on the node as
+**hostPort 5055**. Data lives on a `local-path` PVC.
 
-All commands use `kubectl --context k3s-multicode`.
+The public HTTPS edge is the **existing nginx + certbot on vmi2702091**
+(`100.64.0.5`, public `158.220.106.157`), where `governance.stichtingduurzaamai.nl`
+already resolves and has a valid Let's Encrypt cert. nginx reverse-proxies to the
+pod over the tailnet. This replaces the old systemd service
+(`ai-governance.service` on vmi2702091, port 3004).
 
-## 0. One-time cluster prerequisites (first public app)
+All kubectl commands use `--context k3s-multicode`.
 
-These are cluster-wide and only need to run once.
-
-```bash
-# ingress-nginx — pinned to the public VPS node, binding host ports 80/443
-helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-helm upgrade --install ingress-nginx ingress-nginx/ingress-nginx \
-  --namespace ingress-nginx --create-namespace \
-  --set controller.hostNetwork=true \
-  --set controller.service.type=ClusterIP \
-  --set controller.nodeSelector."kubernetes\.io/hostname"=vmi3419075 \
-  --set controller.publishService.enabled=false
-
-# cert-manager
-helm repo add jetstack https://charts.jetstack.io
-helm upgrade --install cert-manager jetstack/cert-manager \
-  --namespace cert-manager --create-namespace --set crds.enabled=true
-
-kubectl --context k3s-multicode apply -f clusterissuer.yaml
-```
-
-> ⚠️ ingress-nginx uses `hostNetwork` to bind :80/:443 on vmi3419075 — make sure no
-> other process on that host already holds those ports (`sudo ss -ltnp | grep -E ':80|:443'`).
-
-## 1. DNS
-
-Point an A record at the VPS public IP:
-
-```
-governance.stichtingduurzaamai.nl.  A  <vmi3419075 public IP>
-```
-
-cert-manager's HTTP-01 challenge needs this resolving before TLS can issue.
-
-## 2. App namespace + secrets
+## 1. Namespace + secrets
 
 ```bash
 kubectl --context k3s-multicode apply -f 00-namespace.yaml
@@ -50,25 +22,47 @@ kubectl --context k3s-multicode -n stichting create secret docker-registry ghcr-
   --docker-server=ghcr.io --docker-username=sayfjawad \
   --docker-password=<GHCR_PAT> --docker-email=sayf@multicode.nl
 
-# App env secret — copy 20-secret.example.yaml to 20-secret.yaml, fill it in, then:
+# App env secret — copy 20-secret.example.yaml to 20-secret.yaml, fill in the
+# TransIP SMTP creds + a long random ADMIN_TOKEN (and Tikkie creds once you have
+# them), then:
 kubectl --context k3s-multicode apply -f 20-secret.yaml
 #   (20-secret.yaml is gitignored — never commit real credentials)
 ```
 
-## 3. Deploy
+## 2. Deploy the pod
 
 ```bash
-kubectl --context k3s-multicode apply -f 10-pvc.yaml -f 30-deployment.yaml -f 40-service.yaml -f 50-ingress.yaml
+kubectl --context k3s-multicode apply -f 10-pvc.yaml -f 30-deployment.yaml -f 40-service.yaml
 kubectl --context k3s-multicode -n stichting rollout status deploy/ai-governance
-kubectl --context k3s-multicode -n stichting get ingress,certificate
+
+# Verify over the tailnet (non-disruptive — old site still live):
+curl -s -o /dev/null -w '%{http_code}\n' http://100.64.0.14:5055/
 ```
 
-TLS should go `Ready=True` within a minute or two once DNS resolves.
+## 3. Cutover: point nginx at the pod (brief, user-facing)
 
-## 4. Tikkie webhook (optional — polling already works without it)
+On **vmi2702091**, edit `/etc/nginx/sites-available/governance.stichtingduurzaamai.nl`
+so everything proxies to the pod (keep the existing `listen 443 ssl` + cert lines):
 
-Register the webhook once so paid status updates arrive instantly (the poller is
-the fallback / source of truth either way):
+```nginx
+    location / {
+        proxy_pass http://100.64.0.14:5055;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+```
+
+(Remove the old `root /var/www/...`, `/assets/` and `/api/ -> :3004` blocks.) Then:
+
+```bash
+sudo nginx -t && sudo systemctl reload nginx
+sudo systemctl disable --now ai-governance.service   # retire the old :3004 backend
+```
+
+## 4. Tikkie webhook (optional — polling is the source of truth)
 
 ```bash
 curl -s https://api-sandbox.abnamro.com/v2/tikkie/paymentrequestssubscription \
@@ -84,7 +78,11 @@ curl -s https://api-sandbox.abnamro.com/v2/tikkie/paymentrequestssubscription \
 ## Updating the app
 
 ```bash
-# after pushing a new image tag:
-kubectl --context k3s-multicode -n stichting set image deploy/ai-governance app=ghcr.io/sayfjawad/ai-governance-training:<tag>
-kubectl --context k3s-multicode -n stichting rollout status deploy/ai-governance
+# on z8, after code changes:
+docker build -t ghcr.io/sayfjawad/ai-governance-training:latest . && docker push ghcr.io/sayfjawad/ai-governance-training:latest
+# then restart the pod:
+kubectl --context k3s-multicode -n stichting rollout restart deploy/ai-governance
 ```
+
+> hostPort + rolling update gotcha: the `Recreate` strategy already handles this —
+> the old pod releases hostPort 5055 before the new one starts.
