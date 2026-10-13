@@ -98,13 +98,11 @@ p:last-child{margin-bottom:0}
 .reg-form input:focus{outline:none;border-color:var(--g)}
 .reg-row{display:flex;gap:12px}
 .reg-row>div{flex:1}
-.reg-price{display:flex;justify-content:space-between;align-items:center;margin:16px 0 4px;font-weight:700;color:#14241b;font-size:1rem}
-.reg-submit{width:100%;margin-top:14px;background:var(--g);color:#fff;border:0;border-radius:8px;padding:13px;font-weight:700;font-size:15px;cursor:pointer}
+.reg-submit{width:100%;margin-top:16px;background:var(--g);color:#fff;border:0;border-radius:8px;padding:13px;font-weight:700;font-size:15px;cursor:pointer}
 .reg-submit:disabled{opacity:.6;cursor:default}
 .reg-ok{text-align:center}
 .reg-ok h3{color:var(--g)}
 .reg-ok p{color:#2f4338;margin:0 auto}
-.reg-ok a.tikkie{display:inline-block;margin-top:14px;background:var(--g);color:#fff;text-decoration:none;font-weight:700;padding:12px 22px;border-radius:8px}
 .reg-note-small{font-size:.8rem;color:#4a5f53;margin-top:12px}
 .reg-err{color:#b91c1c;font-size:.85rem;margin-top:8px;display:none}
 @media(max-width:560px){.reg-row{flex-direction:column;gap:0}}
@@ -216,8 +214,8 @@ p:last-child{margin-bottom:0}
 <section class="register-cta" id="register">
   <div class="wrap">
     <span class="eyebrow">Ready to Join?</span>
-    <h2>Aanmelden &amp; betalen</h2>
-    <p>Wil je deelnemen aan deze masterclass? Vul je gegevens in en ontvang direct de Tikkie-betaallink per e-mail.</p>
+    <h2>Aanmelden</h2>
+    <p>Wil je deelnemen aan deze masterclass? Vul je gegevens in om je aan te melden. Je ontvangt een bevestiging per e-mail.</p>
 
     <form class="reg-form" id="reg-form" novalidate>
       <div class="reg-row">
@@ -230,15 +228,13 @@ p:last-child{margin-bottom:0}
         <div><label for="org">Organisatie <span style="font-weight:400;color:#4a5f53">(optioneel)</span></label><input id="org" autocomplete="organization"></div>
         <div><label for="ph">Telefoon <span style="font-weight:400;color:#4a5f53">(optioneel)</span></label><input id="ph" type="tel" autocomplete="tel"></div>
       </div>
-      <div class="reg-price"><span>Deelnamekosten</span><span>€75 p.p.</span></div>
-      <button class="reg-submit" type="submit" id="reg-btn">Stuur mij de betaallink</button>
+      <button class="reg-submit" type="submit" id="reg-btn">Verstuur aanmelding</button>
       <div class="reg-err" id="reg-err"></div>
     </form>
 
     <div class="reg-ok" id="reg-ok" style="display:none">
       <h3>Bedankt! 🎉</h3>
       <p id="reg-ok-text"></p>
-      <a class="tikkie" id="reg-tikkie" href="#" target="_blank" rel="noopener">Betaal €75 via Tikkie →</a>
       <p class="reg-note-small">E-mail niet ontvangen? Controleer je spammap of mail naar info@stichtingduurzaamai.nl.</p>
     </div>
 
@@ -251,7 +247,6 @@ p:last-child{margin-bottom:0}
   var form = document.getElementById('reg-form');
   var err = document.getElementById('reg-err');
   var btn = document.getElementById('reg-btn');
-  var FALLBACK = 'https://tikkie.me/pay/Stichti5519/a1Nih6bHydBzAbyBsn7y64';
 
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
@@ -278,11 +273,8 @@ p:last-child{margin-bottom:0}
         })
       });
       if (!r.ok) throw new Error('api');
-      var data = await r.json().catch(function () { return {}; });
-      var url = (data && data.tikkieUrl) || FALLBACK;
       document.getElementById('reg-ok-text').textContent =
-        'We hebben je aanmelding ontvangen en een e-mail met de betaallink gestuurd naar ' + em + '.';
-      document.getElementById('reg-tikkie').href = url;
+        'We hebben je aanmelding ontvangen. Je ontvangt een bevestiging per e-mail op ' + em + '.';
       form.style.display = 'none';
       document.getElementById('reg-ok').style.display = 'block';
       document.getElementById('register').scrollIntoView({ behavior: 'smooth' });
@@ -290,7 +282,7 @@ p:last-child{margin-bottom:0}
       err.textContent = 'Er is een fout opgetreden. Probeer het opnieuw of mail naar info@stichtingduurzaamai.nl.';
       err.style.display = 'block';
       btn.disabled = false;
-      btn.textContent = 'Stuur mij de betaallink';
+      btn.textContent = 'Verstuur aanmelding';
     }
   });
 })();
