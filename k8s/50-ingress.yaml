@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ai-governance
+  namespace: stichting
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts: [governance.stichtingduurzaamai.nl]
+      secretName: ai-governance-tls
+  rules:
+    - host: governance.stichtingduurzaamai.nl
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ai-governance
+                port:
+                  number: 80

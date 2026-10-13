@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import { User, Mail, Building2, Phone, ChevronRight, CheckCircle2, ExternalLink } from "lucide-react";
-
-const TIKKIE_URL = "https://tikkie.me/pay/Stichti5519/a1Nih6bHydBzAbyBsn7y64";
+import { PRICE_EUR, TIKKIE_FALLBACK_URL } from "../config";
 
 export const PreRegistrationForm: React.FC = () => {
   const { language, t } = useLanguage();
@@ -16,6 +15,8 @@ export const PreRegistrationForm: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  // Per-registrant Tikkie link returned by the API (falls back to the shared link).
+  const [paymentUrl, setPaymentUrl] = useState(TIKKIE_FALLBACK_URL);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -45,6 +46,9 @@ export const PreRegistrationForm: React.FC = () => {
       });
 
       if (!response.ok) throw new Error("API error");
+
+      const data = await response.json().catch(() => ({}));
+      if (data?.tikkieUrl) setPaymentUrl(data.tikkieUrl);
 
       setIsSubmitting(false);
       setSubmitSuccess(true);
@@ -103,12 +107,12 @@ export const PreRegistrationForm: React.FC = () => {
                   {language === "nl" ? "Of betaal direct via:" : "Or pay directly via:"}
                 </p>
                 <a
-                  href={TIKKIE_URL}
+                  href={paymentUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold text-slate-950 bg-emerald-400 hover:bg-emerald-300 transition-colors"
                 >
-                  Betaal €75 via Tikkie
+                  {language === "nl" ? `Betaal €${PRICE_EUR} via Tikkie` : `Pay €${PRICE_EUR} via Tikkie`}
                   <ExternalLink className="w-4 h-4" />
                 </a>
               </div>
@@ -244,7 +248,7 @@ export const PreRegistrationForm: React.FC = () => {
                 <span className="text-sm text-slate-700 font-medium">
                   {language === "nl" ? "Deelnamekosten:" : "Participation fee:"}
                 </span>
-                <span className="text-lg font-black text-emerald-600">€75 {language === "nl" ? "p.p." : "p.p."}</span>
+                <span className="text-lg font-black text-emerald-600">€{PRICE_EUR} p.p.</span>
               </div>
 
               <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
