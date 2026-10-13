@@ -1,16 +1,300 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Stichting Duurzaam AI - AI Governance Masterclass</title>
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="alternate icon" href="/favicon.ico" sizes="any" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Stichting Duurzaam AI - AI Governance Masterclass</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="alternate icon" href="/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<style>
+:root{
+  --bg:#ffffff; --alt:#f3f8f4; --ink:#14241b; --body:#2f4338; --muted:#4a5f53;
+  --g:#17743f; --g-dark:#0f5b30; --card:#ffffff; --line:#d5e5da;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1a14; --alt:#14231b; --ink:#f0f7f2; --body:#d3e2d9; --muted:#a9c0b2;
+    --g:#4cc27c; --g-dark:#0f5b30; --card:#172b20; --line:#284533;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f1a14; --alt:#14231b; --ink:#f0f7f2; --body:#d3e2d9; --muted:#a9c0b2;
+  --g:#4cc27c; --g-dark:#0f5b30; --card:#172b20; --line:#284533;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--body);
+  font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;text-align:left}
+.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+section{padding:30px 0}
+.alt{background:var(--alt)}
+h1,h2,h3{margin:0;color:var(--ink);line-height:1.25}
+h2{font-size:1.35rem;margin-bottom:8px}
+h3{font-size:1.02rem;margin-bottom:2px}
+p{margin:0 0 10px;max-width:68ch}
+p:last-child{margin-bottom:0}
+.eyebrow{display:block;font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--g);margin-bottom:6px}
+.quote{border-left:4px solid var(--g);padding-left:14px;font-weight:600;color:var(--ink);font-size:1.08rem}
 
+/* Hero */
+.hero{background:var(--g-dark);color:#fff;padding:32px 0 28px}
+.hero .tagline{font-size:.8rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#b5ecca;margin-bottom:6px}
+.hero h1{color:#fff;font-size:clamp(1.9rem,5vw,2.6rem);margin-bottom:6px}
+.hero p{color:#e0f5e8;font-size:1.1rem;margin:0}
+
+/* Presenter */
+.presenter{display:flex;align-items:center;gap:16px}
+.presenter img{width:80px;height:80px;border-radius:50%;object-fit:cover;border:2px solid var(--g);flex:0 0 auto}
+.presenter a{color:var(--g);font-weight:600}
+
+/* Lists */
+.audience{color:var(--ink);font-weight:600}
+.list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:14px 32px}
+.list li p{font-size:.95rem;color:var(--muted);max-width:none}
+.numbered{counter-reset:c}
+.numbered li{counter-increment:c;position:relative;padding-left:32px}
+.numbered li::before{content:counter(c);position:absolute;left:0;top:0;width:22px;height:22px;border-radius:50%;background:var(--g);color:#fff;font-size:.8rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+.outcomes li{border-left:3px solid var(--g);padding-left:14px}
+.outcomes li h3{color:var(--g)}
+
+/* Final banner */
+.final{background:var(--g-dark)}
+.final .eyebrow{color:#b5ecca}
+.final p{color:#e0f5e8;font-size:1.05rem}
+
+@media(max-width:700px){
+  body{font-size:16px}
+  .list{grid-template-columns:1fr;gap:12px}
+  section{padding:24px 0}
+}
+
+/* Registration CTA */
+.register-cta{
+  background:var(--g);
+  color:#fff;
+  text-align:center;
+  padding:42px 0;
+}
+.register-cta .wrap{max-width:760px}
+.register-cta .eyebrow{color:#b5ecca}
+.register-cta h2{color:#fff;font-size:clamp(1.55rem,4vw,2rem);margin-bottom:10px}
+.register-cta p{color:#e8f7ee;font-size:1.05rem;margin:0 auto 20px;max-width:62ch}
+.register-note{
+  margin-top:14px!important;
+  margin-bottom:0!important;
+  font-size:.88rem!important;
+  color:#d5eee0!important;
+}
+
+/* Registration form (replaces the single CTA button) */
+.reg-form,.reg-ok{max-width:520px;margin:0 auto;text-align:left;background:#fff;border-radius:12px;padding:22px;color:var(--body)}
+.reg-form label{display:block;font-size:.78rem;font-weight:700;color:#14241b;margin:10px 0 4px}
+.reg-form input{width:100%;padding:10px 12px;border:1px solid #d5e5da;border-radius:8px;font-size:15px;font-family:inherit;background:#fff;color:#14241b}
+.reg-form input:focus{outline:none;border-color:var(--g)}
+.reg-row{display:flex;gap:12px}
+.reg-row>div{flex:1}
+.reg-price{display:flex;justify-content:space-between;align-items:center;margin:16px 0 4px;font-weight:700;color:#14241b;font-size:1rem}
+.reg-submit{width:100%;margin-top:14px;background:var(--g);color:#fff;border:0;border-radius:8px;padding:13px;font-weight:700;font-size:15px;cursor:pointer}
+.reg-submit:disabled{opacity:.6;cursor:default}
+.reg-ok{text-align:center}
+.reg-ok h3{color:var(--g)}
+.reg-ok p{color:#2f4338;margin:0 auto}
+.reg-ok a.tikkie{display:inline-block;margin-top:14px;background:var(--g);color:#fff;text-decoration:none;font-weight:700;padding:12px 22px;border-radius:8px}
+.reg-note-small{font-size:.8rem;color:#4a5f53;margin-top:12px}
+.reg-err{color:#b91c1c;font-size:.85rem;margin-top:8px;display:none}
+@media(max-width:560px){.reg-row{flex-direction:column;gap:0}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="tagline">Adapt or become history.</div>
+    <h1>AI Governance</h1>
+    <p>Understanding AI, its risks, and how to govern it responsibly</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <span class="eyebrow">Your Presenter</span>
+    <div class="presenter">
+      <img src="/omar-zahawi.jpg" alt="Omar Zahawi">
+      <div>
+        <h2 style="margin-bottom:2px">Omar Zahawi</h2>
+        <p><a href="https://www.linkedin.com/in/omar-zahawi" target="_blank" rel="noopener">View profile on LinkedIn</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <span class="eyebrow">Why AI Matters Now</span>
+    <h2>Learning AI in the right way is no longer optional.</h2>
+    <p>The market is shifting, client expectations are changing, and AI is moving rapidly from experimentation into everyday business operations, products, and decision-making.</p>
+    <p class="quote">The question is no longer whether AI will affect your role, but how prepared you are for that change.</p>
+    <p>This foundational awareness masterclass provides a practical introduction to AI governance and the key concepts needed to understand, manage, and govern AI effectively.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="eyebrow">The First Step</span>
+    <h2>The first step is visibility</h2>
+    <p>What is happening? Where are you today? What capabilities do you have? What risks are emerging? What opportunities are available? And what direction should you take next?</p>
+    <p><strong style="color:var(--ink)">This masterclass provides that foundation.</strong></p>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <span class="eyebrow">Target Audience</span>
+    <p>For professionals who need to understand AI governance but do not need to be AI specialists, including:</p>
+    <p class="audience">Business &amp; Management | Risk | Compliance | Information Security | Data | IT | Legal &amp; Privacy | Internal Audit | Product &amp; AI Teams</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="eyebrow">What This Masterclass Covers</span>
+    <ol class="list numbered">
+        <li><h3>AI as an Emerging Risk</h3><p>Understand why AI creates new risk dimensions and how AI risk differs from traditional technology risk.</p></li>
+        <li><h3>AI Challenges &amp; Risk Areas</h3><p>Explore key challenges.</p></li>
+        <li><h3>AI Objectives &amp; Business Value</h3><p>Understand what organisations are trying to achieve with AI and how governance enables AI adoption while controlling risk.</p></li>
+        <li><h3>AI Application Types</h3><p>Understand the main types of AI applications.</p></li>
+        <li><h3>AI Engineering &amp; Building Capabilities</h3><p>Understand the key capabilities involved in building and deploying AI.</p></li>
+        <li><h3>Core Elements of AI Governance</h3><p>Introduction to the main governance components.</p></li>
+        <li><h3>Regulatory &amp; Governance Landscape</h3><p>Introduction to major AI governance frameworks and standards, including the EU AI Act, ISO/IEC 42001, NIST AI RMF, and related AI standards.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <span class="eyebrow">Value &amp; Outcomes</span>
+    <h2>After the masterclass, participants will be able to:</h2>
+    <ul class="list outcomes">
+        <li><h3>Understand</h3><p>What AI is, how it is being used, and why it creates emerging risks.</p></li>
+        <li><h3>Recognise</h3><p>The main AI risk areas, challenges, and governance requirements.</p></li>
+        <li><h3>Differentiate</h3><p>AI application types, levels of autonomy, and the governance implications of each.</p></li>
+        <li><h3>Connect the Pieces</h3><p>Understand how AI strategy, engineering, risk, security, privacy, compliance, and governance work together.</p></li>
+        <li><h3>Make Better Decisions</h3><p>Use a common AI governance vocabulary and framework when evaluating AI initiatives and risks.</p></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="eyebrow">What This Masterclass Is Not</span>
+    <h2>This is not a technical AI engineering masterclass.</h2>
+    <p>It does not focus on coding, model development, technical configuration, platform-specific implementation, or tools that may change rapidly.</p>
+    <p>Technology will evolve. Platforms will change. New tools will replace old ones. What remains valuable is understanding the direction of travel, the capabilities required, and the risks that must be managed.</p>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <span class="eyebrow">The Outcome</span>
+    <p>Participants leave with a practical foundation for understanding AI governance overall structure, enabling them to engage confidently in AI initiatives, identify key risks, and understand governance responsibilities.</p>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <span class="eyebrow">Prerequisite — Mandatory</span>
+    <p class="quote">Pre-masterclass reading is mandatory for all attendees.</p>
+    <p>Attendees will receive the reading material 1 week prior to the masterclass and must read it before attending.</p>
+  </div>
+</section>
+
+<section class="register-cta" id="register">
+  <div class="wrap">
+    <span class="eyebrow">Ready to Join?</span>
+    <h2>Aanmelden &amp; betalen</h2>
+    <p>Wil je deelnemen aan deze masterclass? Vul je gegevens in en ontvang direct de Tikkie-betaallink per e-mail.</p>
+
+    <form class="reg-form" id="reg-form" novalidate>
+      <div class="reg-row">
+        <div><label for="fn">Voornaam *</label><input id="fn" autocomplete="given-name" required></div>
+        <div><label for="ln">Achternaam *</label><input id="ln" autocomplete="family-name" required></div>
+      </div>
+      <label for="em">E-mailadres *</label>
+      <input id="em" type="email" autocomplete="email" required>
+      <div class="reg-row">
+        <div><label for="org">Organisatie <span style="font-weight:400;color:#4a5f53">(optioneel)</span></label><input id="org" autocomplete="organization"></div>
+        <div><label for="ph">Telefoon <span style="font-weight:400;color:#4a5f53">(optioneel)</span></label><input id="ph" type="tel" autocomplete="tel"></div>
+      </div>
+      <div class="reg-price"><span>Deelnamekosten</span><span>€75 p.p.</span></div>
+      <button class="reg-submit" type="submit" id="reg-btn">Stuur mij de betaallink</button>
+      <div class="reg-err" id="reg-err"></div>
+    </form>
+
+    <div class="reg-ok" id="reg-ok" style="display:none">
+      <h3>Bedankt! 🎉</h3>
+      <p id="reg-ok-text"></p>
+      <a class="tikkie" id="reg-tikkie" href="#" target="_blank" rel="noopener">Betaal €75 via Tikkie →</a>
+      <p class="reg-note-small">E-mail niet ontvangen? Controleer je spammap of mail naar info@stichtingduurzaamai.nl.</p>
+    </div>
+
+    <p class="register-note">Wij vanuit Stichting Duurzaam AI organiseren en sponsoren deze masterclass. Het bestuur bekostigt zelf 4 plaatsen (4 × €75 = €300).</p>
+  </div>
+</section>
+
+<script>
+(function () {
+  var form = document.getElementById('reg-form');
+  var err = document.getElementById('reg-err');
+  var btn = document.getElementById('reg-btn');
+  var FALLBACK = 'https://tikkie.me/pay/Stichti5519/a1Nih6bHydBzAbyBsn7y64';
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    err.style.display = 'none';
+    var fn = document.getElementById('fn').value.trim();
+    var ln = document.getElementById('ln').value.trim();
+    var em = document.getElementById('em').value.trim();
+    if (!fn || !ln || !em) {
+      err.textContent = 'Vul alstublieft je voornaam, achternaam en e-mailadres in.';
+      err.style.display = 'block';
+      return;
+    }
+    btn.disabled = true;
+    btn.textContent = 'Verwerken...';
+    try {
+      var r = await fetch('/api/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          firstName: fn, lastName: ln, email: em,
+          organization: document.getElementById('org').value.trim(),
+          phone: document.getElementById('ph').value.trim(),
+          language: 'nl'
+        })
+      });
+      if (!r.ok) throw new Error('api');
+      var data = await r.json().catch(function () { return {}; });
+      var url = (data && data.tikkieUrl) || FALLBACK;
+      document.getElementById('reg-ok-text').textContent =
+        'We hebben je aanmelding ontvangen en een e-mail met de betaallink gestuurd naar ' + em + '.';
+      document.getElementById('reg-tikkie').href = url;
+      form.style.display = 'none';
+      document.getElementById('reg-ok').style.display = 'block';
+      document.getElementById('register').scrollIntoView({ behavior: 'smooth' });
+    } catch (ex) {
+      err.textContent = 'Er is een fout opgetreden. Probeer het opnieuw of mail naar info@stichtingduurzaamai.nl.';
+      err.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Stuur mij de betaallink';
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
