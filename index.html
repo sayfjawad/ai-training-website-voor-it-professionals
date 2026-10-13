@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -41,6 +41,11 @@ p:last-child{margin-bottom:0}
 .eyebrow{display:block;font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--g);margin-bottom:6px}
 .quote{border-left:4px solid var(--g);padding-left:14px;font-weight:600;color:var(--ink);font-size:1.08rem}
 
+/* Language switcher */
+.langbar{position:fixed;top:12px;right:14px;z-index:50;display:flex;gap:2px;background:rgba(15,23,20,.35);backdrop-filter:blur(4px);border-radius:999px;padding:3px}
+.langbar button{background:transparent;border:0;color:#e0f5e8;font-weight:700;font-size:.72rem;letter-spacing:.06em;padding:5px 11px;border-radius:999px;cursor:pointer;font-family:inherit}
+.langbar button.active{background:#fff;color:var(--g-dark)}
+
 /* Hero */
 .hero{background:var(--g-dark);color:#fff;padding:32px 0 28px}
 .hero .tagline{font-size:.8rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#b5ecca;margin-bottom:6px}
@@ -73,25 +78,13 @@ p:last-child{margin-bottom:0}
   section{padding:24px 0}
 }
 
-/* Registration CTA */
-.register-cta{
-  background:var(--g);
-  color:#fff;
-  text-align:center;
-  padding:42px 0;
-}
+/* Registration */
+.register-cta{background:var(--g);color:#fff;text-align:center;padding:42px 0}
 .register-cta .wrap{max-width:760px}
 .register-cta .eyebrow{color:#b5ecca}
 .register-cta h2{color:#fff;font-size:clamp(1.55rem,4vw,2rem);margin-bottom:10px}
 .register-cta p{color:#e8f7ee;font-size:1.05rem;margin:0 auto 20px;max-width:62ch}
-.register-note{
-  margin-top:14px!important;
-  margin-bottom:0!important;
-  font-size:.88rem!important;
-  color:#d5eee0!important;
-}
-
-/* Registration form (replaces the single CTA button) */
+.register-note{margin-top:14px!important;margin-bottom:0!important;font-size:.88rem!important;color:#d5eee0!important}
 .reg-form,.reg-ok{max-width:520px;margin:0 auto;text-align:left;background:#fff;border-radius:12px;padding:22px;color:var(--body)}
 .reg-form label{display:block;font-size:.78rem;font-weight:700;color:#14241b;margin:10px 0 4px}
 .reg-form input{width:100%;padding:10px 12px;border:1px solid #d5e5da;border-radius:8px;font-size:15px;font-family:inherit;background:#fff;color:#14241b}
@@ -105,27 +98,33 @@ p:last-child{margin-bottom:0}
 .reg-ok p{color:#2f4338;margin:0 auto}
 .reg-note-small{font-size:.8rem;color:#4a5f53;margin-top:12px}
 .reg-err{color:#b91c1c;font-size:.85rem;margin-top:8px;display:none}
+.opt{font-weight:400;color:#4a5f53}
 @media(max-width:560px){.reg-row{flex-direction:column;gap:0}}
 </style>
 </head>
 <body>
 
+<div class="langbar">
+  <button id="lang-nl" type="button" onclick="setLang('nl')">NL</button>
+  <button id="lang-en" type="button" onclick="setLang('en')">EN</button>
+</div>
+
 <header class="hero">
   <div class="wrap">
     <div class="tagline">Adapt or become history.</div>
     <h1>AI Governance</h1>
-    <p>Understanding AI, its risks, and how to govern it responsibly</p>
+    <p data-i18n="hero_sub">Begrijp AI, de risico's en hoe je het verantwoord bestuurt.</p>
   </div>
 </header>
 
 <section>
   <div class="wrap">
-    <span class="eyebrow">Your Presenter</span>
+    <span class="eyebrow" data-i18n="presenter_eyebrow">Jouw spreker</span>
     <div class="presenter">
       <img src="/omar-zahawi.jpg" alt="Omar Zahawi">
       <div>
         <h2 style="margin-bottom:2px">Omar Zahawi</h2>
-        <p><a href="https://www.linkedin.com/in/omar-zahawi" target="_blank" rel="noopener">View profile on LinkedIn</a></p>
+        <p><a href="https://www.linkedin.com/in/omar-zahawi" target="_blank" rel="noopener" data-i18n="presenter_linkedin">Bekijk profiel op LinkedIn</a></p>
       </div>
     </div>
   </div>
@@ -133,116 +132,197 @@ p:last-child{margin-bottom:0}
 
 <section class="alt">
   <div class="wrap">
-    <span class="eyebrow">Why AI Matters Now</span>
-    <h2>Learning AI in the right way is no longer optional.</h2>
-    <p>The market is shifting, client expectations are changing, and AI is moving rapidly from experimentation into everyday business operations, products, and decision-making.</p>
-    <p class="quote">The question is no longer whether AI will affect your role, but how prepared you are for that change.</p>
-    <p>This foundational awareness masterclass provides a practical introduction to AI governance and the key concepts needed to understand, manage, and govern AI effectively.</p>
+    <span class="eyebrow" data-i18n="why_eyebrow">Waarom AI er nu toe doet</span>
+    <h2 data-i18n="why_h">AI op de juiste manier leren is niet langer optioneel.</h2>
+    <p data-i18n="why_p1">De markt verschuift, klantverwachtingen veranderen, en AI beweegt snel van experiment naar de dagelijkse bedrijfsvoering, producten en besluitvorming.</p>
+    <p class="quote" data-i18n="why_quote">De vraag is niet langer óf AI jouw rol zal beïnvloeden, maar hoe goed je voorbereid bent op die verandering.</p>
+    <p data-i18n="why_p2">Deze foundationele masterclass biedt een praktische inleiding tot AI governance en de kernconcepten die nodig zijn om AI effectief te begrijpen, te beheren en te besturen.</p>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <span class="eyebrow">The First Step</span>
-    <h2>The first step is visibility</h2>
-    <p>What is happening? Where are you today? What capabilities do you have? What risks are emerging? What opportunities are available? And what direction should you take next?</p>
-    <p><strong style="color:var(--ink)">This masterclass provides that foundation.</strong></p>
+    <span class="eyebrow" data-i18n="step_eyebrow">De eerste stap</span>
+    <h2 data-i18n="step_h">De eerste stap is zicht</h2>
+    <p data-i18n="step_p">Wat gebeurt er? Waar sta je vandaag? Welke capaciteiten heb je? Welke risico's dienen zich aan? Welke kansen zijn er? En welke richting kies je vervolgens?</p>
+    <p><strong style="color:var(--ink)" data-i18n="step_strong">Deze masterclass biedt die fundering.</strong></p>
   </div>
 </section>
 
 <section class="alt">
   <div class="wrap">
-    <span class="eyebrow">Target Audience</span>
-    <p>For professionals who need to understand AI governance but do not need to be AI specialists, including:</p>
+    <span class="eyebrow" data-i18n="aud_eyebrow">Doelgroep</span>
+    <p data-i18n="aud_p">Voor professionals die AI governance moeten begrijpen, maar geen AI-specialist hoeven te zijn, waaronder:</p>
     <p class="audience">Business &amp; Management | Risk | Compliance | Information Security | Data | IT | Legal &amp; Privacy | Internal Audit | Product &amp; AI Teams</p>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <span class="eyebrow">What This Masterclass Covers</span>
+    <span class="eyebrow" data-i18n="cov_eyebrow">Wat komt er aan bod</span>
     <ol class="list numbered">
-        <li><h3>AI as an Emerging Risk</h3><p>Understand why AI creates new risk dimensions and how AI risk differs from traditional technology risk.</p></li>
-        <li><h3>AI Challenges &amp; Risk Areas</h3><p>Explore key challenges.</p></li>
-        <li><h3>AI Objectives &amp; Business Value</h3><p>Understand what organisations are trying to achieve with AI and how governance enables AI adoption while controlling risk.</p></li>
-        <li><h3>AI Application Types</h3><p>Understand the main types of AI applications.</p></li>
-        <li><h3>AI Engineering &amp; Building Capabilities</h3><p>Understand the key capabilities involved in building and deploying AI.</p></li>
-        <li><h3>Core Elements of AI Governance</h3><p>Introduction to the main governance components.</p></li>
-        <li><h3>Regulatory &amp; Governance Landscape</h3><p>Introduction to major AI governance frameworks and standards, including the EU AI Act, ISO/IEC 42001, NIST AI RMF, and related AI standards.</p></li>
+        <li><h3 data-i18n="cov1_h">AI als opkomend risico</h3><p data-i18n="cov1_p">Begrijp waarom AI nieuwe risicodimensies creëert en hoe AI-risico verschilt van traditioneel technologisch risico.</p></li>
+        <li><h3 data-i18n="cov2_h">AI-uitdagingen &amp; risicogebieden</h3><p data-i18n="cov2_p">Verken de belangrijkste uitdagingen.</p></li>
+        <li><h3 data-i18n="cov3_h">AI-doelstellingen &amp; bedrijfswaarde</h3><p data-i18n="cov3_p">Begrijp wat organisaties willen bereiken met AI en hoe governance AI-adoptie mogelijk maakt terwijl risico's worden beheerst.</p></li>
+        <li><h3 data-i18n="cov4_h">AI-toepassingstypes</h3><p data-i18n="cov4_p">Begrijp de voornaamste soorten AI-toepassingen.</p></li>
+        <li><h3 data-i18n="cov5_h">AI Engineering &amp; capabilities opbouwen</h3><p data-i18n="cov5_p">Begrijp de kerncompetenties die betrokken zijn bij het bouwen en uitrollen van AI.</p></li>
+        <li><h3 data-i18n="cov6_h">Kernelementen van AI governance</h3><p data-i18n="cov6_p">Introductie in de voornaamste governance-componenten.</p></li>
+        <li><h3 data-i18n="cov7_h">Regelgevend &amp; governance-landschap</h3><p data-i18n="cov7_p">Introductie in de voornaamste AI governance-kaders en standaarden, waaronder de EU AI Act, ISO/IEC 42001, NIST AI RMF en verwante AI-standaarden.</p></li>
     </ol>
   </div>
 </section>
 
 <section class="alt">
   <div class="wrap">
-    <span class="eyebrow">Value &amp; Outcomes</span>
-    <h2>After the masterclass, participants will be able to:</h2>
+    <span class="eyebrow" data-i18n="out_eyebrow">Waarde &amp; resultaten</span>
+    <h2 data-i18n="out_h">Na de masterclass kunnen deelnemers:</h2>
     <ul class="list outcomes">
-        <li><h3>Understand</h3><p>What AI is, how it is being used, and why it creates emerging risks.</p></li>
-        <li><h3>Recognise</h3><p>The main AI risk areas, challenges, and governance requirements.</p></li>
-        <li><h3>Differentiate</h3><p>AI application types, levels of autonomy, and the governance implications of each.</p></li>
-        <li><h3>Connect the Pieces</h3><p>Understand how AI strategy, engineering, risk, security, privacy, compliance, and governance work together.</p></li>
-        <li><h3>Make Better Decisions</h3><p>Use a common AI governance vocabulary and framework when evaluating AI initiatives and risks.</p></li>
+        <li><h3 data-i18n="out1_h">Begrijpen</h3><p data-i18n="out1_p">Wat AI is, hoe het wordt gebruikt en waarom het opkomende risico's creëert.</p></li>
+        <li><h3 data-i18n="out2_h">Herkennen</h3><p data-i18n="out2_p">De voornaamste AI-risicogebieden, uitdagingen en governance-vereisten.</p></li>
+        <li><h3 data-i18n="out3_h">Onderscheiden</h3><p data-i18n="out3_p">AI-toepassingstypes, autonomieniveaus en de governance-implicaties van elk.</p></li>
+        <li><h3 data-i18n="out4_h">De stukken verbinden</h3><p data-i18n="out4_p">Hoe AI-strategie, engineering, risk, security, privacy, compliance en governance samenwerken.</p></li>
+        <li><h3 data-i18n="out5_h">Betere beslissingen nemen</h3><p data-i18n="out5_p">Gebruik een gemeenschappelijke AI governance-vocabulaire en -kader bij het beoordelen van AI-initiatieven en -risico's.</p></li>
     </ul>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <span class="eyebrow">What This Masterclass Is Not</span>
-    <h2>This is not a technical AI engineering masterclass.</h2>
-    <p>It does not focus on coding, model development, technical configuration, platform-specific implementation, or tools that may change rapidly.</p>
-    <p>Technology will evolve. Platforms will change. New tools will replace old ones. What remains valuable is understanding the direction of travel, the capabilities required, and the risks that must be managed.</p>
+    <span class="eyebrow" data-i18n="not_eyebrow">Wat deze masterclass niet is</span>
+    <h2 data-i18n="not_h">Dit is geen technische AI-engineeringmasterclass.</h2>
+    <p data-i18n="not_p1">Er wordt niet gefocust op programmeren, modelontwikkeling, technische configuratie, platformspecifieke implementatie of tools die snel kunnen veranderen.</p>
+    <p data-i18n="not_p2">Technologie evolueert. Platformen veranderen. Nieuwe tools vervangen oude. Wat waardevol blijft, is begrip van de richting, de benodigde capaciteiten en de risico's die beheerst moeten worden.</p>
   </div>
 </section>
 
 <section class="final">
   <div class="wrap">
-    <span class="eyebrow">The Outcome</span>
-    <p>Participants leave with a practical foundation for understanding AI governance overall structure, enabling them to engage confidently in AI initiatives, identify key risks, and understand governance responsibilities.</p>
+    <span class="eyebrow" data-i18n="res_eyebrow">Het resultaat</span>
+    <p data-i18n="res_p">Deelnemers gaan naar huis met een praktische basis om de overkoepelende structuur van AI governance te begrijpen, waardoor ze met vertrouwen kunnen deelnemen aan AI-initiatieven, belangrijke risico's kunnen herkennen en governance-verantwoordelijkheden begrijpen.</p>
   </div>
 </section>
 
 <section class="alt">
   <div class="wrap">
-    <span class="eyebrow">Prerequisite — Mandatory</span>
-    <p class="quote">Pre-masterclass reading is mandatory for all attendees.</p>
-    <p>Attendees will receive the reading material 1 week prior to the masterclass and must read it before attending.</p>
+    <span class="eyebrow" data-i18n="pre_eyebrow">Verplicht — voorbereiding</span>
+    <p class="quote" data-i18n="pre_q">Deelnemers ontvangen het leesmateriaal een week voorafgaand aan de masterclass en worden geacht dit vóór aanvang van de masterclass te hebben gelezen.</p>
   </div>
 </section>
 
 <section class="register-cta" id="register">
   <div class="wrap">
-    <span class="eyebrow">Ready to Join?</span>
-    <h2>Aanmelden</h2>
-    <p>Wil je deelnemen aan deze masterclass? Vul je gegevens in om je aan te melden. Je ontvangt een bevestiging per e-mail.</p>
+    <span class="eyebrow" data-i18n="reg_eyebrow">Klaar om mee te doen?</span>
+    <h2 data-i18n="reg_h">Aanmelden</h2>
+    <p data-i18n="reg_p">Wil je deelnemen aan deze masterclass? Vul je gegevens in om je aan te melden. Je ontvangt een bevestiging per e-mail.</p>
 
     <form class="reg-form" id="reg-form" novalidate>
       <div class="reg-row">
-        <div><label for="fn">Voornaam *</label><input id="fn" autocomplete="given-name" required></div>
-        <div><label for="ln">Achternaam *</label><input id="ln" autocomplete="family-name" required></div>
+        <div><label for="fn" data-i18n="f_fn">Voornaam *</label><input id="fn" autocomplete="given-name" required></div>
+        <div><label for="ln" data-i18n="f_ln">Achternaam *</label><input id="ln" autocomplete="family-name" required></div>
       </div>
-      <label for="em">E-mailadres *</label>
+      <label for="em" data-i18n="f_em">E-mailadres *</label>
       <input id="em" type="email" autocomplete="email" required>
       <div class="reg-row">
-        <div><label for="org">Organisatie <span style="font-weight:400;color:#4a5f53">(optioneel)</span></label><input id="org" autocomplete="organization"></div>
-        <div><label for="ph">Telefoon <span style="font-weight:400;color:#4a5f53">(optioneel)</span></label><input id="ph" type="tel" autocomplete="tel"></div>
+        <div><label for="org" data-i18n="f_org">Organisatie <span class="opt">(optioneel)</span></label><input id="org" autocomplete="organization"></div>
+        <div><label for="ph" data-i18n="f_ph">Telefoon <span class="opt">(optioneel)</span></label><input id="ph" type="tel" autocomplete="tel"></div>
       </div>
-      <button class="reg-submit" type="submit" id="reg-btn">Verstuur aanmelding</button>
+      <button class="reg-submit" type="submit" id="reg-btn" data-i18n="f_btn">Verstuur aanmelding</button>
       <div class="reg-err" id="reg-err"></div>
     </form>
 
     <div class="reg-ok" id="reg-ok" style="display:none">
-      <h3>Bedankt! 🎉</h3>
+      <h3 data-i18n="ok_h">Bedankt! 🎉</h3>
       <p id="reg-ok-text"></p>
-      <p class="reg-note-small">E-mail niet ontvangen? Controleer je spammap of mail naar info@stichtingduurzaamai.nl.</p>
+      <p class="reg-note-small" data-i18n="ok_note">E-mail niet ontvangen? Controleer je spammap of mail naar info@stichtingduurzaamai.nl.</p>
     </div>
 
-    <p class="register-note">Stichting Duurzaam AI organiseert en sponsort deze masterclass.</p>
+    <p class="register-note" data-i18n="sponsor">Stichting Duurzaam AI organiseert en sponsort deze masterclass.</p>
   </div>
 </section>
 
 <script>
+var T = {
+  hero_sub: { nl: "Begrijp AI, de risico's en hoe je het verantwoord bestuurt.", en: "Understanding AI, its risks, and how to govern it responsibly." },
+  presenter_eyebrow: { nl: "Jouw spreker", en: "Your Presenter" },
+  presenter_linkedin: { nl: "Bekijk profiel op LinkedIn", en: "View profile on LinkedIn" },
+  why_eyebrow: { nl: "Waarom AI er nu toe doet", en: "Why AI Matters Now" },
+  why_h: { nl: "AI op de juiste manier leren is niet langer optioneel.", en: "Learning AI in the right way is no longer optional." },
+  why_p1: { nl: "De markt verschuift, klantverwachtingen veranderen, en AI beweegt snel van experiment naar de dagelijkse bedrijfsvoering, producten en besluitvorming.", en: "The market is shifting, client expectations are changing, and AI is moving rapidly from experimentation into everyday business operations, products, and decision-making." },
+  why_quote: { nl: "De vraag is niet langer óf AI jouw rol zal beïnvloeden, maar hoe goed je voorbereid bent op die verandering.", en: "The question is no longer whether AI will affect your role, but how prepared you are for that change." },
+  why_p2: { nl: "Deze foundationele masterclass biedt een praktische inleiding tot AI governance en de kernconcepten die nodig zijn om AI effectief te begrijpen, te beheren en te besturen.", en: "This foundational awareness masterclass provides a practical introduction to AI governance and the key concepts needed to understand, manage, and govern AI effectively." },
+  step_eyebrow: { nl: "De eerste stap", en: "The First Step" },
+  step_h: { nl: "De eerste stap is zicht", en: "The first step is visibility" },
+  step_p: { nl: "Wat gebeurt er? Waar sta je vandaag? Welke capaciteiten heb je? Welke risico's dienen zich aan? Welke kansen zijn er? En welke richting kies je vervolgens?", en: "What is happening? Where are you today? What capabilities do you have? What risks are emerging? What opportunities are available? And what direction should you take next?" },
+  step_strong: { nl: "Deze masterclass biedt die fundering.", en: "This masterclass provides that foundation." },
+  aud_eyebrow: { nl: "Doelgroep", en: "Target Audience" },
+  aud_p: { nl: "Voor professionals die AI governance moeten begrijpen, maar geen AI-specialist hoeven te zijn, waaronder:", en: "For professionals who need to understand AI governance but do not need to be AI specialists, including:" },
+  cov_eyebrow: { nl: "Wat komt er aan bod", en: "What This Masterclass Covers" },
+  cov1_h: { nl: "AI als opkomend risico", en: "AI as an Emerging Risk" },
+  cov1_p: { nl: "Begrijp waarom AI nieuwe risicodimensies creëert en hoe AI-risico verschilt van traditioneel technologisch risico.", en: "Understand why AI creates new risk dimensions and how AI risk differs from traditional technology risk." },
+  cov2_h: { nl: "AI-uitdagingen &amp; risicogebieden", en: "AI Challenges &amp; Risk Areas" },
+  cov2_p: { nl: "Verken de belangrijkste uitdagingen.", en: "Explore key challenges." },
+  cov3_h: { nl: "AI-doelstellingen &amp; bedrijfswaarde", en: "AI Objectives &amp; Business Value" },
+  cov3_p: { nl: "Begrijp wat organisaties willen bereiken met AI en hoe governance AI-adoptie mogelijk maakt terwijl risico's worden beheerst.", en: "Understand what organisations are trying to achieve with AI and how governance enables AI adoption while controlling risk." },
+  cov4_h: { nl: "AI-toepassingstypes", en: "AI Application Types" },
+  cov4_p: { nl: "Begrijp de voornaamste soorten AI-toepassingen.", en: "Understand the main types of AI applications." },
+  cov5_h: { nl: "AI Engineering &amp; capabilities opbouwen", en: "AI Engineering &amp; Building Capabilities" },
+  cov5_p: { nl: "Begrijp de kerncompetenties die betrokken zijn bij het bouwen en uitrollen van AI.", en: "Understand the key capabilities involved in building and deploying AI." },
+  cov6_h: { nl: "Kernelementen van AI governance", en: "Core Elements of AI Governance" },
+  cov6_p: { nl: "Introductie in de voornaamste governance-componenten.", en: "Introduction to the main governance components." },
+  cov7_h: { nl: "Regelgevend &amp; governance-landschap", en: "Regulatory &amp; Governance Landscape" },
+  cov7_p: { nl: "Introductie in de voornaamste AI governance-kaders en standaarden, waaronder de EU AI Act, ISO/IEC 42001, NIST AI RMF en verwante AI-standaarden.", en: "Introduction to major AI governance frameworks and standards, including the EU AI Act, ISO/IEC 42001, NIST AI RMF, and related AI standards." },
+  out_eyebrow: { nl: "Waarde &amp; resultaten", en: "Value &amp; Outcomes" },
+  out_h: { nl: "Na de masterclass kunnen deelnemers:", en: "After the masterclass, participants will be able to:" },
+  out1_h: { nl: "Begrijpen", en: "Understand" },
+  out1_p: { nl: "Wat AI is, hoe het wordt gebruikt en waarom het opkomende risico's creëert.", en: "What AI is, how it is being used, and why it creates emerging risks." },
+  out2_h: { nl: "Herkennen", en: "Recognise" },
+  out2_p: { nl: "De voornaamste AI-risicogebieden, uitdagingen en governance-vereisten.", en: "The main AI risk areas, challenges, and governance requirements." },
+  out3_h: { nl: "Onderscheiden", en: "Differentiate" },
+  out3_p: { nl: "AI-toepassingstypes, autonomieniveaus en de governance-implicaties van elk.", en: "AI application types, levels of autonomy, and the governance implications of each." },
+  out4_h: { nl: "De stukken verbinden", en: "Connect the Pieces" },
+  out4_p: { nl: "Hoe AI-strategie, engineering, risk, security, privacy, compliance en governance samenwerken.", en: "How AI strategy, engineering, risk, security, privacy, compliance, and governance work together." },
+  out5_h: { nl: "Betere beslissingen nemen", en: "Make Better Decisions" },
+  out5_p: { nl: "Gebruik een gemeenschappelijke AI governance-vocabulaire en -kader bij het beoordelen van AI-initiatieven en -risico's.", en: "Use a common AI governance vocabulary and framework when evaluating AI initiatives and risks." },
+  not_eyebrow: { nl: "Wat deze masterclass niet is", en: "What This Masterclass Is Not" },
+  not_h: { nl: "Dit is geen technische AI-engineeringmasterclass.", en: "This is not a technical AI engineering masterclass." },
+  not_p1: { nl: "Er wordt niet gefocust op programmeren, modelontwikkeling, technische configuratie, platformspecifieke implementatie of tools die snel kunnen veranderen.", en: "It does not focus on coding, model development, technical configuration, platform-specific implementation, or tools that may change rapidly." },
+  not_p2: { nl: "Technologie evolueert. Platformen veranderen. Nieuwe tools vervangen oude. Wat waardevol blijft, is begrip van de richting, de benodigde capaciteiten en de risico's die beheerst moeten worden.", en: "Technology will evolve. Platforms will change. New tools will replace old ones. What remains valuable is understanding the direction of travel, the capabilities required, and the risks that must be managed." },
+  res_eyebrow: { nl: "Het resultaat", en: "The Outcome" },
+  res_p: { nl: "Deelnemers gaan naar huis met een praktische basis om de overkoepelende structuur van AI governance te begrijpen, waardoor ze met vertrouwen kunnen deelnemen aan AI-initiatieven, belangrijke risico's kunnen herkennen en governance-verantwoordelijkheden begrijpen.", en: "Participants leave with a practical foundation for understanding AI governance overall structure, enabling them to engage confidently in AI initiatives, identify key risks, and understand governance responsibilities." },
+  pre_eyebrow: { nl: "Verplicht — voorbereiding", en: "Prerequisite — Mandatory" },
+  pre_q: { nl: "Deelnemers ontvangen het leesmateriaal een week voorafgaand aan de masterclass en worden geacht dit vóór aanvang van de masterclass te hebben gelezen.", en: "Participants receive the reading material one week before the masterclass and are expected to have read it before the masterclass begins." },
+  reg_eyebrow: { nl: "Klaar om mee te doen?", en: "Ready to Join?" },
+  reg_h: { nl: "Aanmelden", en: "Register" },
+  reg_p: { nl: "Wil je deelnemen aan deze masterclass? Vul je gegevens in om je aan te melden. Je ontvangt een bevestiging per e-mail.", en: "Would you like to join this masterclass? Fill in your details to register. You'll receive a confirmation by email." },
+  f_fn: { nl: "Voornaam *", en: "First name *" },
+  f_ln: { nl: "Achternaam *", en: "Last name *" },
+  f_em: { nl: "E-mailadres *", en: "Email address *" },
+  f_org: { nl: 'Organisatie <span class="opt">(optioneel)</span>', en: 'Organisation <span class="opt">(optional)</span>' },
+  f_ph: { nl: 'Telefoon <span class="opt">(optioneel)</span>', en: 'Phone <span class="opt">(optional)</span>' },
+  f_btn: { nl: "Verstuur aanmelding", en: "Submit registration" },
+  ok_h: { nl: "Bedankt! 🎉", en: "Thank you! 🎉" },
+  ok_note: { nl: "E-mail niet ontvangen? Controleer je spammap of mail naar info@stichtingduurzaamai.nl.", en: "No email? Check your spam folder or email info@stichtingduurzaamai.nl." },
+  sponsor: { nl: "Stichting Duurzaam AI organiseert en sponsort deze masterclass.", en: "Stichting Duurzaam AI organises and sponsors this masterclass." }
+};
+var MSG = {
+  ok_text: { nl: "We hebben je aanmelding ontvangen. Je ontvangt een bevestiging per e-mail op {email}.", en: "We've received your registration. You'll get a confirmation email at {email}." },
+  err_required: { nl: "Vul alstublieft je voornaam, achternaam en e-mailadres in.", en: "Please enter your first name, last name and email address." },
+  err_generic: { nl: "Er is een fout opgetreden. Probeer het opnieuw of mail naar info@stichtingduurzaamai.nl.", en: "Something went wrong. Please try again or email info@stichtingduurzaamai.nl." }
+};
+var lang = localStorage.getItem('lang') || 'nl';
+
+function setLang(l) {
+  lang = (l === 'en') ? 'en' : 'nl';
+  localStorage.setItem('lang', lang);
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(function (el) {
+    var k = el.getAttribute('data-i18n');
+    if (T[k] && T[k][lang] != null) el.innerHTML = T[k][lang];
+  });
+  document.getElementById('lang-nl').classList.toggle('active', lang === 'nl');
+  document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+}
+
 (function () {
   var form = document.getElementById('reg-form');
   var err = document.getElementById('reg-err');
@@ -255,12 +335,12 @@ p:last-child{margin-bottom:0}
     var ln = document.getElementById('ln').value.trim();
     var em = document.getElementById('em').value.trim();
     if (!fn || !ln || !em) {
-      err.textContent = 'Vul alstublieft je voornaam, achternaam en e-mailadres in.';
+      err.textContent = MSG.err_required[lang];
       err.style.display = 'block';
       return;
     }
     btn.disabled = true;
-    btn.textContent = 'Verwerken...';
+    btn.textContent = lang === 'en' ? 'Sending...' : 'Verwerken...';
     try {
       var r = await fetch('/api/register', {
         method: 'POST',
@@ -269,22 +349,23 @@ p:last-child{margin-bottom:0}
           firstName: fn, lastName: ln, email: em,
           organization: document.getElementById('org').value.trim(),
           phone: document.getElementById('ph').value.trim(),
-          language: 'nl'
+          language: lang
         })
       });
       if (!r.ok) throw new Error('api');
-      document.getElementById('reg-ok-text').textContent =
-        'We hebben je aanmelding ontvangen. Je ontvangt een bevestiging per e-mail op ' + em + '.';
+      document.getElementById('reg-ok-text').textContent = MSG.ok_text[lang].replace('{email}', em);
       form.style.display = 'none';
       document.getElementById('reg-ok').style.display = 'block';
       document.getElementById('register').scrollIntoView({ behavior: 'smooth' });
     } catch (ex) {
-      err.textContent = 'Er is een fout opgetreden. Probeer het opnieuw of mail naar info@stichtingduurzaamai.nl.';
+      err.textContent = MSG.err_generic[lang];
       err.style.display = 'block';
       btn.disabled = false;
-      btn.textContent = 'Verstuur aanmelding';
+      btn.textContent = T.f_btn[lang];
     }
   });
+
+  setLang(lang);
 })();
 </script>
 
