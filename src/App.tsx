@@ -14,7 +14,7 @@ import { Program } from "./components/Program";
 import { PracticalInfo } from "./components/PracticalInfo";
 import { Trainer } from "./components/Trainer";
 import { Faq } from "./components/Faq";
-import { TikkieCta } from "./components/TikkieCta";
+import { PreRegistrationForm } from "./components/PreRegistrationForm";
 import { Footer } from "./components/Footer";
 
 export default function App() {
@@ -51,8 +51,8 @@ export default function App() {
           {/* Frequently Asked Questions */}
           <Faq />
 
-          {/* Tikkie Payment CTA */}
-          <TikkieCta />
+          {/* Pre-registration form → Tikkie payment link via email */}
+          <PreRegistrationForm />
         </main>
 
         {/* Brand Information & Direct Contact Footer */}
