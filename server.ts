@@ -38,6 +38,13 @@ async function startServer() {
       if (!body.firstName || !body.lastName || !body.email) {
         return res.status(400).json({ success: false, error: "Missing required fields" });
       }
+      // Security: email must be a single valid address — reject arrays and
+      // comma/newline-separated lists, which nodemailer would treat as multiple
+      // recipients (open relay / email bombing).
+      const rawEmail = body.email;
+      if (typeof rawEmail !== "string" || !/^[^\s@,;]+@[^\s@,;]+\.[^\s@,;]+$/.test(rawEmail)) {
+        return res.status(400).json({ success: false, error: "Invalid email address" });
+      }
       const reg: Registration = {
         id: body.id || `GOV-${Math.floor(100000 + Math.random() * 900000)}`,
         createdAt: body.createdAt || new Date().toISOString(),
